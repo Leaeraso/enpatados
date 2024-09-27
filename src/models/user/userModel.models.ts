@@ -6,27 +6,42 @@ const User = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 2,
+        max: 20
+      }
     },
     surname: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    dob: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 2,
+        max: 20
+      }
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate: {
+        min: 8,
+        max: 30
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
+    },
+    dob: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      validate: {
+        isDate: true
+      }
     }
   },
   {

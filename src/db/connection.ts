@@ -13,7 +13,7 @@ const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
   dialect: 'mysql'
 })
 
-const connectToDatabase = async () => {
+const connection = async () => {
   try {
     await sequelize.authenticate()
     console.log('Connection has been established successfully.')
@@ -22,4 +22,4 @@ const connectToDatabase = async () => {
   }
 }
 
-export { sequelize, connectToDatabase }
+export { sequelize, connection }
