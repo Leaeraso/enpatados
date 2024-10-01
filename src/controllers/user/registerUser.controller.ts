@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import userService from '../../services/user/index.services'
-import errorHelper from '../../helpers/errorHelper'
+import { customError } from '../../helpers/error.helper'
 
 const registerUser = async (req: Request, res: Response) => {
   try {
@@ -12,13 +12,20 @@ const registerUser = async (req: Request, res: Response) => {
       dob: req.body.dob
     }
 
-    await userService.createUser(user)
+    const createdUser = await userService.createUser(user)
 
     res.status(201).json({
-      message: 'Usuario registrado con exito'
+      message: 'Usuario registrado con exito',
+      createdUser
     })
   } catch (error) {
-    errorHelper.internalServerError('error al registrar el usuario')
+    console.error('error al registrar el usuario: ', error)
+
+    if (error instanceof customError) {
+      res.status(error.httpStatus).json({ error: error.message })
+    } else {
+      res.status(500).json({ message: 'internal server error' })
+    }
   }
 }
 
