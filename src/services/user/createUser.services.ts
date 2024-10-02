@@ -2,11 +2,9 @@ import errorHelper from '../../helpers/error.helper'
 import validateHelper from '../../helpers/validateHelper'
 import userModel from '../../models/user/userModel.models'
 import bcrypt from 'bcrypt'
-import userDto from '../../dto/user/userDTO'
-import { Model } from 'sequelize'
-import UserResponse from '../../dto/user/userResponseDTO'
+import userDto from '../../dto/user/registerUserDTO'
 
-const createUser = async (user: userDto): Promise<UserResponse> => {
+const createUser = async (user: userDto) => {
   try {
     // Validar modelo de usuario
     await validateHelper(userModel, user)
@@ -29,22 +27,13 @@ const createUser = async (user: userDto): Promise<UserResponse> => {
     const hashPassword = await bcrypt.hash(user.password, 10)
 
     //Crear al nuevo usuario
-    const newUser: Model = await userModel.create({
+    await userModel.create({
       name: user.name,
       surname: user.surname,
       password: hashPassword,
       email: user.email,
       dob: user.dob
     })
-
-    const response: UserResponse = {
-      name: newUser.get('name') as string,
-      surname: newUser.get('surname') as string,
-      email: newUser.get('email') as string,
-      dob: newUser.get('dob') as Date
-    }
-
-    return response
   } catch (error: any) {
     throw errorHelper.internalServerError(error.message, 'CREATE_USER_ERROR')
   }

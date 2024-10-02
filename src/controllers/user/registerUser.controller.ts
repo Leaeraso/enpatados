@@ -12,11 +12,10 @@ const registerUser = async (req: Request, res: Response) => {
       dob: req.body.dob
     }
 
-    const createdUser = await userService.createUser(user)
+    await userService.createUser(user)
 
     res.status(201).json({
-      message: 'Usuario registrado con exito',
-      createdUser
+      message: 'Usuario registrado con exito'
     })
   } catch (error) {
     console.error('error al registrar el usuario: ', error)

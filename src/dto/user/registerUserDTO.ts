@@ -1,4 +1,4 @@
-interface User {
+interface registerUser {
   name: string
   surname: string
   password: string
@@ -6,4 +6,4 @@ interface User {
   dob: Date
 }
 
-export default User
+export default registerUser
