@@ -9,9 +9,10 @@ const MYSQL_USER: string = process.env.MYSQL_USER!
 const MYSQL_PASS: string = process.env.MYSQL_PASS!
 const MYSQL_DB: string = process.env.MYSQL_DB!
 
-const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
+const sequelize: Sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
   host: MYSQL_HOST,
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: console.log
 })
 
 const connection = async () => {
@@ -19,9 +20,7 @@ const connection = async () => {
     await sequelize.authenticate()
     console.log('Connection has been established successfully.')
 
-    createTables()
-
-    // console.log('Creating tables if not exist')
+    await createTables()
   } catch (error) {
     console.error('Unable to connect to the database:', error)
   }

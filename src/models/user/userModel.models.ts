@@ -1,7 +1,23 @@
-import { DataTypes } from 'sequelize'
+import {
+  CreationOptional,
+  DataTypes,
+  InferAttributes,
+  InferCreationAttributes,
+  Model
+} from 'sequelize'
 import { sequelize } from '../../db/connection'
 
-const User = sequelize.define(
+interface User
+  extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  id: CreationOptional<number>
+  name: string
+  surname: string
+  password: string
+  email: string
+  dob: Date
+}
+
+const User = sequelize.define<User>(
   'User',
   {
     id: {
@@ -51,7 +67,7 @@ const User = sequelize.define(
   },
   {
     timestamps: true,
-    freezeTableName: true
+    tableName: 'Users'
   }
 )
 
