@@ -1,8 +1,10 @@
-import { sequelize } from '../db/connection'
-import '../models/user/userModel.models'
-import '../models/product/productModel.models'
+import { sequelize } from './dbInstance'
+import '../models/user/UserModel.models'
+import '../models/product/ProductModel.models'
 
 const createTables = async () => {
+  // console.log(Product)
+
   await sequelize.sync({ force: false })
   console.log('The tables were just created!')
 }

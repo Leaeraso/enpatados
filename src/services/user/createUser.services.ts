@@ -1,6 +1,6 @@
 import errorHelper from '../../helpers/error.helper'
 import validateHelper from '../../helpers/validateHelper'
-import userModel from '../../models/user/userModel.models'
+import userModel from '../../models/user/UserModel.models'
 import bcrypt from 'bcrypt'
 import userDto from '../../dto/user/registerUserDTO'
 

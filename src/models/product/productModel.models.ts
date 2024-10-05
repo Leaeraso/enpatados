@@ -5,19 +5,24 @@ import {
   InferCreationAttributes,
   Model
 } from 'sequelize'
-import { sequelize } from '../../db/connection'
+import { sequelize } from '../../db/dbInstance'
 
-interface Product
-  extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
-  id: CreationOptional<number>
-  name: string
-  description: string
-  price: number
-  stock: number
+console.log('Create:', sequelize)
+
+class Product extends Model<
+  InferAttributes<Product>,
+  InferCreationAttributes<Product>
+> {
+  id!: CreationOptional<number>
+  name!: string
+  description!: string
+  price!: number
+  stock!: number
 }
 
-const Product = sequelize.define<Product>(
-  'Product',
+console.log(sequelize)
+
+Product.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -49,8 +54,11 @@ const Product = sequelize.define<Product>(
   },
   {
     timestamps: true,
-    tableName: 'Products'
+    tableName: 'Products',
+    sequelize
   }
 )
 
-export default Product
+// console.log('Product:', Product)
+
+export { Product }

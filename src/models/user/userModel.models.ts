@@ -5,20 +5,26 @@ import {
   InferCreationAttributes,
   Model
 } from 'sequelize'
-import { sequelize } from '../../db/connection'
+import { sequelize } from '../../db/dbInstance'
 
-interface User
-  extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
-  id: CreationOptional<number>
-  name: string
-  surname: string
-  password: string
-  email: string
-  dob: Date
+class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+  id!: CreationOptional<number>
+  name!: string
+  surname!: string
+  password!: string
+  email!: string
+  dob!: Date
 }
 
-const User = sequelize.define<User>(
-  'User',
+// console.log('sequelize:', sequelize)
+
+if (sequelize !== undefined) {
+  console.log('se importo correctamente')
+} else {
+  console.log('sequelize es undefined')
+}
+
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -66,8 +72,9 @@ const User = sequelize.define<User>(
     }
   },
   {
+    tableName: 'Users',
     timestamps: true,
-    tableName: 'Users'
+    sequelize
   }
 )
 
