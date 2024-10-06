@@ -9,7 +9,8 @@ const registerUser = async (req: Request, res: Response) => {
       surname: req.body.surname,
       password: req.body.password,
       email: req.body.email,
-      dob: req.body.dob
+      dob: req.body.dob,
+      role: req.body.role
     }
 
     await userService.createUser(user)

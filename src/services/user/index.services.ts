@@ -1,4 +1,4 @@
 import createUser from './createUser.services'
-import logUser from '../user/loginUser.services'
+import loginUser from '../user/loginUser.services'
 
-export default { createUser, logUser }
+export default { createUser, loginUser }

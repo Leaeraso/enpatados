@@ -6,17 +6,23 @@ import {
   updateProduct,
   deleteProduct
 } from '../controllers/product/index.controller'
+import { authPermissions, authToken } from '../middlewares/middleware'
 
 const router = express.Router()
 
-router.get('/', getProducts)
+router.get('/', authToken, getProducts)
 
-router.get('/:id', getProduct)
+router.get('/:id', authToken, getProduct)
 
-router.post('/', createProduct)
+router.post('/', authToken, authPermissions(['admin', 'god']), createProduct)
 
-router.put('/:id', updateProduct)
+router.put('/:id', authToken, authPermissions(['admin', 'god']), updateProduct)
 
-router.delete('/:id', deleteProduct)
+router.delete(
+  '/:id',
+  authToken,
+  authPermissions(['admin', 'god']),
+  deleteProduct
+)
 
 export default router

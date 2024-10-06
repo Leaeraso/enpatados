@@ -9,7 +9,7 @@ dotenv.config()
 
 const { SECRET_KEY } = process.env
 
-const logUser = async (user: loginUserDTO): Promise<string | undefined> => {
+const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
   try {
     const userRecord = await userModel.findOne({
       where: { email: user.email }
@@ -54,4 +54,4 @@ const logUser = async (user: loginUserDTO): Promise<string | undefined> => {
   }
 }
 
-export default logUser
+export default loginUser

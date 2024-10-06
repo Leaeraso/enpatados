@@ -9,9 +9,14 @@ const loginUser = async (req: Request, res: Response) => {
       password: req.body.password
     }
 
-    const token: string | undefined = await userService.logUser(user)
+    const token: string | undefined = await userService.loginUser(user)
 
-    res.status(200).json({ token: token })
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      signed: true
+    })
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })

@@ -32,7 +32,8 @@ const createUser = async (user: userDto) => {
       surname: user.surname,
       password: hashPassword,
       email: user.email,
-      dob: user.dob
+      dob: user.dob,
+      role: user.role
     })
   } catch (error: any) {
     throw errorHelper.internalServerError(error.message, 'CREATE_USER_ERROR')
