@@ -12,10 +12,9 @@ const MYSQL_DB: string = process.env.MYSQL_DB!
 
 const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
   host: MYSQL_HOST,
-  dialect: 'mysql',
-  logging: console.log
+  dialect: 'mysql'
 })
 
-console.log('sequelize declaration:', sequelize)
+// console.log('sequelize declaration:', sequelize)
 
 export { sequelize }

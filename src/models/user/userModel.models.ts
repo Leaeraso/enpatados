@@ -16,14 +16,6 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   dob!: Date
 }
 
-// console.log('sequelize:', sequelize)
-
-if (sequelize !== undefined) {
-  console.log('se importo correctamente')
-} else {
-  console.log('sequelize es undefined')
-}
-
 User.init(
   {
     id: {

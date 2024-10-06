@@ -7,8 +7,6 @@ import {
 } from 'sequelize'
 import { sequelize } from '../../db/dbInstance'
 
-console.log('Create:', sequelize)
-
 class Product extends Model<
   InferAttributes<Product>,
   InferCreationAttributes<Product>
@@ -19,8 +17,6 @@ class Product extends Model<
   price!: number
   stock!: number
 }
-
-console.log(sequelize)
 
 Product.init(
   {
@@ -59,6 +55,4 @@ Product.init(
   }
 )
 
-// console.log('Product:', Product)
-
-export { Product }
+export default Product
