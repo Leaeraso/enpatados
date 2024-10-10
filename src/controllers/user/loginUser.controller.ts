@@ -9,6 +9,10 @@ const loginUser = async (req: Request, res: Response) => {
       password: req.body.password
     }
 
+    if (!req.body.email || !req.body.password) {
+      res.status(400).json({ message: 'Email and password are required' })
+    }
+
     const token: string | undefined = await userService.loginUser(user)
 
     res.cookie('token', token, {
@@ -17,11 +21,15 @@ const loginUser = async (req: Request, res: Response) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
       signed: true
     })
-  } catch (error) {
+
+    res.status(200).json({ token })
+  } catch (error: any | customError) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })
     } else {
-      res.status(500).json({ message: 'internal server error' })
+      res
+        .status(500)
+        .json({ message: 'internal server error', error: error.message })
     }
   }
 }

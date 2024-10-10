@@ -8,7 +8,7 @@ const authPermissions = (permissions: string[]) => {
       const userRole = req.body.role
 
       if (permissions.includes(userRole)) {
-        return next()
+        next()
       } else {
         return next(
           errorHelper.notAuthorizedError(
@@ -30,16 +30,27 @@ const authPermissions = (permissions: string[]) => {
 
 const authToken = (req: Request, _res: Response, next: NextFunction) => {
   try {
-    const token = req.cookies.token
+    // Ahora lo envio a traves del header, luego debo utilizarlo en las cookies
+    const token = req.headers.authorization?.split(' ')[1]
 
     if (!token) {
-      errorHelper.notAuthorizedError('Token requerido', 'INVALID_CREDENTIALS')
+      throw errorHelper.notAuthorizedError(
+        'Token requerido',
+        'INVALID_CREDENTIALS'
+      )
     }
 
     const user = jwt.verify(token, process.env.SECRET_KEY as string)
     req.user = user
     next()
-  } catch (error) {}
+  } catch (error) {
+    return next(
+      errorHelper.notAuthorizedError(
+        'Token invalido o expirado',
+        'INVALID_CREDENTIALS'
+      )
+    )
+  }
 }
 
 export { authPermissions, authToken }
