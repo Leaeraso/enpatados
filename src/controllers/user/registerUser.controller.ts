@@ -19,12 +19,12 @@ const registerUser = async (req: Request, res: Response) => {
       message: 'Usuario registrado con exito'
     })
   } catch (error) {
-    console.error('error al registrar el usuario: ', error)
+    // console.error('error al registrar el usuario: ', error)
 
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })
     } else {
-      res.status(500).json({ message: 'internal server error' })
+      res.status(500).json({ message: 'Error al registrar el usuario' })
     }
   }
 }

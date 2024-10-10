@@ -1,6 +1,6 @@
 import loginUserDTO from '../../dto/user/loginUserDTO'
 import userModel from '../../models/user/userModel.models'
-import errorHelper from '../../helpers/error.helper'
+import errorHelper, { customError } from '../../helpers/error.helper'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -38,7 +38,8 @@ const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
 
     // informacion que se incluira en el payload  del token JWT
     const tokenInfo = {
-      id: loginUser.id
+      id: loginUser.id,
+      role: loginUser.role
     }
 
     const token = jwt.sign(tokenInfo, SECRET_KEY, {
@@ -47,6 +48,10 @@ const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
 
     return token
   } catch (error) {
+    if (error instanceof customError) {
+      throw error
+    }
+
     throw errorHelper.internalServerError(
       'Error al logear al usuario',
       'LOGIN_USER_ERROR'
