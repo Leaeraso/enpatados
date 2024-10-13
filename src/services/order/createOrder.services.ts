@@ -7,7 +7,7 @@ import productModel from '../../models/product/productModel.models'
 const createOrder = async (id: number, products: orderProductDTO[]) => {
   try {
     if (products.length === 0) {
-      errorHelper.badRequestError(
+      throw errorHelper.badRequestError(
         'No hay productos en el carrito',
         'BAD_REQUEST_ERROR'
       )
@@ -19,7 +19,10 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
       const product = await productModel.findByPk(item.id)
 
       if (!product) {
-        errorHelper.notFoundError('Producto no encontrado', 'NOT_FOUND_ERROR')
+        throw errorHelper.notFoundError(
+          'Producto no encontrado',
+          'NOT_FOUND_ERROR'
+        )
       }
 
       total += item.price * item.quantity
@@ -32,11 +35,23 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
       userId: id,
       discount: 0
     })
+
+    for (const item of products) {
+      await orderProductModel.create({
+        orderId: newOrder.orderNumber,
+        productId: item.id,
+        quantity: item.quantity,
+        subtotal: item.quantity * item.price
+      })
+    }
+
+    //falta agregar conexion con api de mercadoPago para pagar y descuentos
   } catch (error) {
     if (error instanceof customError) {
       throw error
     }
 
+    console.error('Error interno al crear la orden:', error)
     throw errorHelper.internalServerError(
       'Error al crear el producto',
       'CREATE_USER_ERROR'
