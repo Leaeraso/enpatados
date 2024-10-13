@@ -25,10 +25,6 @@ OrderProduct.init(
     subtotal: {
       type: DataTypes.FLOAT,
       allowNull: false
-    },
-    discount: {
-      type: DataTypes.FLOAT,
-      allowNull: true
     }
   },
   {

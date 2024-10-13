@@ -16,6 +16,8 @@ class Order extends Model<
   date!: Date
   total!: number
   status!: string
+  userId!: number
+  discount!: number
 }
 
 Order.init(
@@ -41,6 +43,14 @@ Order.init(
       type: DataTypes.ENUM('creado', 'pendiente', 'pagado', 'cancelado'),
       allowNull: false,
       defaultValue: 'creado'
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    discount: {
+      type: DataTypes.FLOAT,
+      allowNull: true
     }
   },
   {
