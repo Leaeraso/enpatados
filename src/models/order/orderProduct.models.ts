@@ -11,7 +11,12 @@ import Product from '../product/productModel.models'
 class OrderProduct extends Model<
   InferAttributes<OrderProduct>,
   InferCreationAttributes<OrderProduct>
-> {}
+> {
+  orderId!: number
+  productId!: number
+  quantity!: number
+  subtotal!: number
+}
 
 OrderProduct.init(
   {
