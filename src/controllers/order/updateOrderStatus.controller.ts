@@ -4,7 +4,7 @@ import orderService from '../../services/order/index.services'
 
 const updateOrderStatus = async (req: Request, res: Response) => {
   try {
-    const orderId = req.user.id
+    const orderId = req.params.id
 
     const newState = req.body
 
