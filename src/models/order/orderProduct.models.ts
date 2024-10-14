@@ -47,4 +47,6 @@ OrderProduct.init(
 Product.belongsToMany(Order, { through: OrderProduct, foreignKey: 'productId' })
 Order.belongsToMany(Product, { through: OrderProduct, foreignKey: 'orderId' })
 
+OrderProduct.belongsTo(Product, { foreignKey: 'productId' })
+
 export default OrderProduct

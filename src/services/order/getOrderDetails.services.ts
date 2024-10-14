@@ -1,13 +1,21 @@
 import orderDetailsDTO from '../../dto/order/orderDetailsDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import orderProductModel from '../../models/order/orderProduct.models'
+import productModel from '../../models/product/productModel.models'
 
 const getOrderDetails = async (id: number) => {
   try {
     const details = await orderProductModel.findAll({
       where: {
         orderId: id
-      }
+      },
+      include: [
+        {
+          model: productModel,
+          attributes: ['name'],
+          as: 'Product'
+        }
+      ]
     })
 
     if (details.length === 0) {
@@ -18,15 +26,25 @@ const getOrderDetails = async (id: number) => {
     }
 
     const orderDetails: orderDetailsDTO[] = details.map((detail) => {
-      return detail.toJSON() as orderDetailsDTO
+      const product = detail.get('Product') as { name: string } | null
+      console.log('Producto:', product)
+      const detailData = detail.toJSON() as orderDetailsDTO
+      return {
+        ...detailData,
+        productName: product ? product.name : null
+      }
     })
 
-    return orderDetails
+    const filteredOrderDetails = orderDetails.map(
+      ({ Product, ...rest }) => rest
+    )
+
+    return filteredOrderDetails
   } catch (error) {
     if (error instanceof customError) {
       throw error
     }
-
+    console.log('Error;', error)
     throw errorHelper.internalServerError(
       'Error al obtener los productos',
       'INTERNAL_SERVER_ERROR'
