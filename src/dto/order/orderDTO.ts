@@ -2,7 +2,7 @@ interface order {
   number?: number
   date: Date
   total: number
-  status: number
+  status: string
   userId: number
   discount: number
 }
