@@ -5,7 +5,6 @@ import {
   getOrderDetails,
   createOrder,
   processPayment,
-  updateOrderStatus,
   deleteOrder
 } from '../controllers/order/index.controller'
 
@@ -18,8 +17,6 @@ router.get('/details/:id', authToken, getOrderDetails)
 router.post('/', authToken, createOrder)
 
 router.post('/payment', authToken, processPayment)
-
-router.put('/:id', authToken, updateOrderStatus)
 
 router.delete('/:id', authToken, deleteOrder)
 
