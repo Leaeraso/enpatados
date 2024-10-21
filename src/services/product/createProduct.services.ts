@@ -24,7 +24,9 @@ const createProduct = async (product: productDTO) => {
       name: product.name,
       description: product.description,
       price: product.price,
-      stock: product.stock
+      stock: product.stock,
+      imageUrl: product.imageUrl,
+      category: product.category
     })
   } catch (error) {
     if (error instanceof customError) {

@@ -8,7 +8,9 @@ const createProduct = async (req: Request, res: Response) => {
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      stock: req.body.stock
+      stock: req.body.stock,
+      imageUrl: req.body.imageUrl,
+      category: req.body.category
     }
 
     await productService.createProduct(product)
