@@ -66,7 +66,7 @@ const createUser = async (user: userDto) => {
     }
 
     throw errorHelper.internalServerError(
-      'Error al logear al usuario',
+      'Error al registrar el usuario',
       'LOGIN_USER_ERROR'
     )
   }
