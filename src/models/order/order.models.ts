@@ -17,7 +17,7 @@ class Order extends Model<
   total!: number
   status!: string
   userId!: number
-  discount!: number
+  discount!: CreationOptional<number>
 }
 
 Order.init(

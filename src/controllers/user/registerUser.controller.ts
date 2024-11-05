@@ -9,9 +9,9 @@ const registerUser = async (req: Request, res: Response) => {
       surname: req.body.surname,
       password: req.body.password,
       email: req.body.email,
-      dob: req.body.dob,
-      role: req.body.role
+      dob: req.body.dob
     }
+    console.log('llamando al servicio')
 
     await userService.createUser(user)
 
@@ -19,11 +19,11 @@ const registerUser = async (req: Request, res: Response) => {
       message: 'Usuario registrado con exito'
     })
   } catch (error) {
-    // console.error('error al registrar el usuario: ', error)
-
     if (error instanceof customError) {
+      console.error('Custom Error:', error)
       res.status(error.httpStatus).json({ error: error.message })
     } else {
+      console.error('Internal Server Error:', error)
       res.status(500).json({ message: 'Error al registrar el usuario' })
     }
   }

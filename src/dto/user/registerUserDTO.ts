@@ -4,7 +4,8 @@ interface registerUser {
   password: string
   email: string
   dob: Date
-  role: string
+  role?: string
+  isValidated?: boolean
 }
 
 export default registerUser

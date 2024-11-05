@@ -14,7 +14,8 @@ class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   password!: string
   email!: string
   dob!: Date
-  role!: string
+  role!: CreationOptional<string>
+  isValidated!: CreationOptional<boolean>
 }
 
 User.init(
@@ -67,6 +68,11 @@ User.init(
       type: DataTypes.ENUM('admin', 'customer', 'god'),
       allowNull: false,
       defaultValue: 'customer'
+    },
+    isValidated: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     }
   },
   {
