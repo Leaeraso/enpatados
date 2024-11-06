@@ -31,7 +31,7 @@ const authPermissions = (permissions: string[]) => {
 const authToken = (req: Request, _res: Response, next: NextFunction) => {
   try {
     // Ahora lo envio a traves del header, luego debo utilizarlo en las cookies
-    const token = req.signedCookies.token
+    const token = req.headers.authorization?.split(" ")[1]
 
     if (!token) {
       throw errorHelper.notAuthorizedError(
