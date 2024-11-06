@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import errorHelper from '../helpers/error.helper'
-import jwt from 'jsonwebtoken'
+import jwt, { TokenExpiredError } from 'jsonwebtoken'
 
 const authPermissions = (permissions: string[]) => {
   return (req: Request, _res: Response, next: NextFunction) => {
@@ -31,7 +31,7 @@ const authPermissions = (permissions: string[]) => {
 const authToken = (req: Request, _res: Response, next: NextFunction) => {
   try {
     // Ahora lo envio a traves del header, luego debo utilizarlo en las cookies
-    const token = req.headers.authorization?.split(' ')[1]
+    const token = req.signedCookies.token
 
     if (!token) {
       throw errorHelper.notAuthorizedError(
@@ -44,9 +44,17 @@ const authToken = (req: Request, _res: Response, next: NextFunction) => {
     req.user = user
     next()
   } catch (error) {
+    if (error instanceof TokenExpiredError) {
+      return next(
+        errorHelper.notAuthorizedError(
+          'Token expirado, por favor inicie sesión nuevamente',
+          'TOKEN_EXPIRED'
+        )
+      )
+    }
     return next(
       errorHelper.notAuthorizedError(
-        'Token invalido o expirado',
+        'Token invalido',
         'INVALID_CREDENTIALS'
       )
     )

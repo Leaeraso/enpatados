@@ -3,8 +3,6 @@ import validateHelper from '../../helpers/validateHelper'
 import userModel from '../../models/user/userModel.models'
 import bcrypt from 'bcrypt'
 import userDto from '../../dto/user/registerUserDTO'
-import emailHelper from '../../helpers/emailHelper'
-import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -49,15 +47,7 @@ const createUser = async (user: userDto) => {
       throw new Error('SECRET_KEY no está definida en las variables de entorno')
     }
 
-    const verificationToken = jwt.sign(
-      {email: user.email},
-      SECRET_KEY,
-      {expiresIn: '5m'}
-    )
-
-    console.log('enviando confirmacio de registro')
-
-    await emailHelper.sendConfirmationEmail(user.email, user.name, verificationToken)
+   
 
     return 
   } catch (error) {

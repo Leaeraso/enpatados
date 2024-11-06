@@ -1,38 +1,43 @@
-import { Resend } from "resend";
+import nodeMailer from 'nodemailer'
 import dotenv from 'dotenv'
 
 dotenv.config()
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY
+const {EMAIL_USER} = process.env
+const {EMAIL_PASS} = process.env
 
-if (!RESEND_API_KEY) {
-    console.log('RESEND_API_KEY no está definido en las variables de entorno.')
-    throw new Error('RESEND_API_KEY no está definido en las variables de entorno.')
+if(!EMAIL_USER || !EMAIL_PASS) {
+    throw new Error('Usuario o contraseña incorrecta')
 }
 
-const resend = new Resend(RESEND_API_KEY);
+const transporter = nodeMailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: EMAIL_USER,
+        pass: EMAIL_PASS
+    }
+})
 
-const sendConfirmationEmail = async (email: string, name: string, _token: string) => {
+const sendPasswordRecoveryMail = async (email: string, token: string) => {
+
+    const url = `http://localhost:3000/user/${token}`
+
+    const mailOptions = ({
+        from: EMAIL_USER,
+        to: email,
+        subject: 'Recuperacion de contraseña',
+        text: `Para restablecer la contraseña, haz click en el siguiente enlace: ${url}`
+    })
+
     try {
-        const confirmationUrl = 'https://www.youtube.com'
-
-        await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: email,
-            subject: 'Confirmacion de registro',
-            html: `
-                <h1>Hola, ${name}</h1>
-                <p>Gracias por registrarte. Por favor, confirma tu registro haciendo click en el siguiente enlace:</p>
-                <a href="${confirmationUrl}">Confirmar Registro</a>
-            `
-        })
-        console.log(`Correo de confirmación enviado a ${email}`);
+        await transporter.sendMail(mailOptions)
+        console.log('Correo enviado exitosamente')
     } catch (error) {
-        console.error('Error al enviar el correo de confirmación:', error);
-        throw new Error('No se pudo enviar el correo de confirmación');
+        console.error('Error al enviar el correo:', error)
+        throw new Error('Error al enviar el correo de recuperación')
     }
 }
 
-export default {sendConfirmationEmail}
-
-
+export default {sendPasswordRecoveryMail}
