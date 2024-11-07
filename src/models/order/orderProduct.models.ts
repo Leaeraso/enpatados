@@ -5,8 +5,6 @@ import {
   Model
 } from 'sequelize'
 import { sequelize } from '../../db/dbInstance'
-import Order from './order.models'
-import Product from '../product/productModel.models'
 
 class OrderProduct extends Model<
   InferAttributes<OrderProduct>,
@@ -43,10 +41,5 @@ OrderProduct.init(
     sequelize
   }
 )
-
-Product.belongsToMany(Order, { through: OrderProduct, foreignKey: 'productId' })
-Order.belongsToMany(Product, { through: OrderProduct, foreignKey: 'orderId' })
-
-OrderProduct.belongsTo(Product, { foreignKey: 'productId' })
 
 export default OrderProduct

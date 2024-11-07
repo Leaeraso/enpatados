@@ -6,7 +6,6 @@ import {
   Model
 } from 'sequelize'
 import { sequelize } from '../../db/dbInstance'
-import User from '../user/userModel.models'
 
 class Order extends Model<
   InferAttributes<Order>,
@@ -59,8 +58,5 @@ Order.init(
     sequelize
   }
 )
-
-User.hasMany(Order, { foreignKey: 'userId', sourceKey: 'id' })
-Order.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' })
 
 export default Order

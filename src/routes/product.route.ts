@@ -18,11 +18,6 @@ router.post('/', authToken, authPermissions(['admin', 'god']), createProduct)
 
 router.put('/:id', authToken, authPermissions(['admin', 'god']), updateProduct)
 
-router.delete(
-  '/:id',
-  authToken,
-  authPermissions(['admin', 'god']),
-  deleteProduct
-)
+router.delete('/:id', authToken, authPermissions(['admin', 'god']), deleteProduct)
 
 export default router
