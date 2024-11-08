@@ -8,9 +8,9 @@ const createOrder = async (req: Request, res: Response) => {
 
     const { products } = req.body
 
-    await orderService.createOrder(Number(userId), products)
+    const url = await orderService.createOrder(Number(userId), products)
 
-    res.status(201).json({ message: 'Orden creada con exito' })
+    res.status(201).json({ message: 'Orden creada con exito', url })
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })

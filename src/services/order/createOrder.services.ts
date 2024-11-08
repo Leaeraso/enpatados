@@ -3,6 +3,11 @@ import errorHelper, { customError } from '../../helpers/error.helper'
 import orderModel from '../../models/order/order.models'
 import orderProductModel from '../../models/order/orderProduct.models'
 import productModel from '../../models/product/productModel.models'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const { PHONE_NUMBER } = process.env
 
 const createOrder = async (id: number, products: orderProductDTO[]) => {
   try {
@@ -46,6 +51,10 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
     }
 
     //falta agregar conexion con api de mercadoPago para pagar y descuentos
+    const message = `Hola enpatados! Acabo de visitar su sitio web y he comprado unas medias, mi numero de orden es ${newOrder.orderNumber}`
+    const whatsAppUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`
+
+    return whatsAppUrl
   } catch (error) {
     if (error instanceof customError) {
       throw error
