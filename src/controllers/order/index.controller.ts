@@ -5,6 +5,7 @@ import deleteOrder from './deleteOrder.controller'
 import processPayment from './processPayment.controller'
 import getOrderById from './getOrderById.controller'
 import updateOrder from './updateOrder.controller'
+import getOrdersOfWeek from './getOrdersOfWeek.controller'
 
 export {
   getOrdersByUserId,
@@ -13,5 +14,6 @@ export {
   processPayment,
   deleteOrder,
   getOrderById,
-  updateOrder
+  updateOrder,
+  getOrdersOfWeek
 }

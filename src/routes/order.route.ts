@@ -7,7 +7,8 @@ import {
   processPayment,
   deleteOrder,
   getOrderById,
-  updateOrder
+  updateOrder,
+  getOrdersOfWeek
 } from '../controllers/order/index.controller'
 
 const router = express.Router()
@@ -15,6 +16,8 @@ const router = express.Router()
 router.get('/user/:id', authToken, getOrdersByUserId)
 
 router.get('/details/:id', authToken, getOrderDetails)
+
+router.get('/weekly', authToken, authPermissions(['admin', 'god']), getOrdersOfWeek)
 
 router.get('/:id', authToken, authPermissions(['admin', 'god']), getOrderById)
 

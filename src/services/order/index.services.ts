@@ -4,6 +4,7 @@ import createOrder from './createOrder.services'
 import deleteOrder from './deleteOrder.services'
 import getOrderById from './getOrderById.services'
 import updateOrder from './updateOrder.services'
+import getOrdersOfWeek from './getOrdersOfWeek.controller'
 
 export default {
   getOrdersByUserId,
@@ -11,5 +12,6 @@ export default {
   createOrder,
   deleteOrder,
   getOrderById,
-  updateOrder
+  updateOrder,
+  getOrdersOfWeek
 }
