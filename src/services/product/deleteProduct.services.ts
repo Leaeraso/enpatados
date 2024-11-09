@@ -1,5 +1,5 @@
 import errorHelper, { customError } from '../../helpers/error.helper'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 
 const deleteProduct = async (id: number) => {
   try {

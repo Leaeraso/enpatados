@@ -1,4 +1,4 @@
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 import productDTO from '../../dto/product/productDTO'
 import errorHelper from '../../helpers/error.helper'
 import { customError } from '../../helpers/error.helper'

@@ -1,5 +1,5 @@
 import orderModel from '../../models/order/order.models'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 import userModel from '../../models/user/userModel.models'
 import orderDTO from '../../dto/order/orderDTO'
 import { Op } from 'sequelize'

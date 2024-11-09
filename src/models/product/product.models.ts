@@ -17,7 +17,7 @@ class Product extends Model<
   price!: number
   stock!: number
   imageUrl!: string
-  category!: string
+  categoryId!: number
 }
 
 Product.init(
@@ -53,10 +53,9 @@ Product.init(
       type: DataTypes.STRING,
       allowNull: true
     },
-    category: {
-      type: DataTypes.ENUM('3/4', 'soquetes'),
-      allowNull: false,
-      defaultValue: 'soquetes'
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   },
   {

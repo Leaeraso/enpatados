@@ -29,6 +29,4 @@ router.post('/payment', authToken, processPayment)
 
 router.delete('/:id', authToken, deleteOrder)
 
-
-
 export default router

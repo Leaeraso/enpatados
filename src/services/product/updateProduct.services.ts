@@ -1,6 +1,6 @@
 import productDTO from '../../dto/product/productDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 
 const updateProduct = async (id: number, updatedData: Partial<productDTO>) => {
   try {

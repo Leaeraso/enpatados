@@ -1,6 +1,6 @@
 import { sequelize } from './dbInstance'
 import '../models/user/userModel.models'
-import '../models/product/productModel.models'
+import '../models/product/product.models'
 import '../models/order/order.models'
 import '../models/order/orderProduct.models'
 

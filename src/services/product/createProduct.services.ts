@@ -1,7 +1,8 @@
 import productDTO from '../../dto/product/productDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import validateHelper from '../../helpers/validateHelper'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
+import categoryModel from '../../models/category/category.models'
 
 const createProduct = async (product: productDTO) => {
   try {
@@ -20,14 +21,21 @@ const createProduct = async (product: productDTO) => {
       )
     }
 
+    const category = categoryModel.findByPk(product.categoryId)
+
+    if (!category) {
+      throw errorHelper.notFoundError('No se ha encontrado la categoria', 'NOT_FOUND_ERROR')
+    }
+
     await productModel.create({
       name: product.name,
       description: product.description,
       price: product.price,
       stock: product.stock,
       imageUrl: product.imageUrl,
-      category: product.category
+      categoryId: product.categoryId
     })
+
   } catch (error) {
     if (error instanceof customError) {
       throw error

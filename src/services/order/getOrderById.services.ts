@@ -2,7 +2,7 @@ import errorHelper, { customError } from '../../helpers/error.helper'
 import orderModel from '../../models/order/order.models'
 import orderDTO from '../../dto/order/orderDTO'
 // import orderProductModel from '../../models/order/orderProduct.models'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 
 const getOrderById = async (id: string) => {
     try {

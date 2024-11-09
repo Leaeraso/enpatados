@@ -2,7 +2,7 @@ import orderProductDTO from '../../dto/order/orderProductDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import orderModel from '../../models/order/order.models'
 import orderProductModel from '../../models/order/orderProduct.models'
-import productModel from '../../models/product/productModel.models'
+import productModel from '../../models/product/product.models'
 import dotenv from 'dotenv'
 
 dotenv.config()

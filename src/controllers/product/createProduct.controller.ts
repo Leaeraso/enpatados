@@ -10,7 +10,7 @@ const createProduct = async (req: Request, res: Response) => {
       price: req.body.price,
       stock: req.body.stock,
       imageUrl: req.body.imageUrl,
-      category: req.body.category
+      categoryId: req.body.categoryId
     }
 
     await productService.createProduct(product)

@@ -5,7 +5,7 @@ interface product {
   price: number
   stock: number
   imageUrl: string
-  category: string
+  categoryId: number
 }
 
 export default product

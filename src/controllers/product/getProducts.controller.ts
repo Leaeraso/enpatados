@@ -7,11 +7,6 @@ const getProducts = async (_req: Request, res: Response) => {
     console.log('pidiendo productos a la base de datos')
     const products = await productService.getProducts()
 
-    if (!products) {
-      res.status(404).json({ message: 'Productos no encontrados' })
-      return
-    }
-
     res.status(200).json({ products })
   } catch (error) {
     if (error instanceof customError) {
