@@ -10,6 +10,7 @@ const createProduct = async (req: Request, res: Response) => {
       price: req.body.price,
       stock: req.body.stock,
       imageUrl: req.body.imageUrl,
+      productType: req.body.productType,
       categoryId: req.body.categoryId
     }
 

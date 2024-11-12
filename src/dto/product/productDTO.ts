@@ -5,6 +5,7 @@ interface product {
   price: number
   stock: number
   imageUrl: string
+  productType: string
   categoryId: number
 }
 
