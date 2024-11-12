@@ -1,7 +1,7 @@
 import errorHelper, { customError } from '../../helpers/error.helper'
 import validateHelper from '../../helpers/validateHelper'
 import userModel from '../../models/user/userModel.models'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import userDto from '../../dto/user/registerUserDTO'
 import dotenv from 'dotenv'
 

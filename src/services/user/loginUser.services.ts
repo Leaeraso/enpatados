@@ -1,7 +1,7 @@
 import loginUserDTO from '../../dto/user/loginUserDTO'
 import userModel from '../../models/user/userModel.models'
 import errorHelper, { customError } from '../../helpers/error.helper'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 

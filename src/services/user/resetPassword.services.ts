@@ -2,7 +2,7 @@ import errorHelper, { customError } from "../../helpers/error.helper"
 import jwt, { JwtPayload } from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import userModel from '../../models/user/userModel.models'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 dotenv.config()
 

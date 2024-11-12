@@ -1,7 +1,7 @@
-import registerUserDTO from '../../dto/user/registerUserDTO';
-import errorHelper, { customError } from '../../helpers/error.helper';
-import userModel from '../../models/user/userModel.models';
-import bcrypt from 'bcrypt';
+import registerUserDTO from '../../dto/user/registerUserDTO'
+import errorHelper, { customError } from '../../helpers/error.helper'
+import userModel from '../../models/user/userModel.models'
+import bcrypt from 'bcryptjs'
 
 const updateUser = async (id: string, updatedData: Partial<registerUserDTO>) => {
     try {
