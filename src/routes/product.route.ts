@@ -10,6 +10,7 @@ import { authPermissions, authToken } from '../middlewares/middleware'
 
 const router = express.Router()
 
+//Verificar que devuelve el getProdcuts y mejorarlo
 router.get('/', authToken, getProducts)
 
 router.get('/:id', authToken, getProduct)

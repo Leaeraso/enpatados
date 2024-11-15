@@ -15,6 +15,7 @@ const router = express.Router()
 
 router.get('/user/:id', authToken, getOrdersByUserId)
 
+//Cambiar para que sea un endpoint para obtener la ordenById con sus detalles
 router.get('/details/:id', authToken, getOrderDetails)
 
 router.get('/weekly', authToken, authPermissions(['admin', 'god']), getOrdersOfWeek)

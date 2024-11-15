@@ -8,6 +8,8 @@ router.get('/auth/token', authToken, authSession)
 
 router.get('/PassRecovery', passwordRecovery)
 
+//endpoint getUserById
+
 router.post('/register', registerUser)
 
 router.post('/login', loginUser)
