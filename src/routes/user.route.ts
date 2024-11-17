@@ -1,5 +1,5 @@
 import express from 'express'
-import { registerUser, loginUser, authSession, passwordRecovery, resetPassword, updateUser } from '../controllers/user/index.controller'
+import { registerUser, loginUser, authSession, passwordRecovery, resetPassword, updateUser, getUserById } from '../controllers/user/index.controller'
 import { authToken } from '../middlewares/middleware'
 
 const router = express.Router()
@@ -8,7 +8,7 @@ router.get('/auth/token', authToken, authSession)
 
 router.get('/PassRecovery', passwordRecovery)
 
-//endpoint getUserById
+router.get('/:id', authToken, getUserById)
 
 router.post('/register', registerUser)
 
