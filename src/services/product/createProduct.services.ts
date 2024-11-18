@@ -31,7 +31,7 @@ const createProduct = async (product: productDTO) => {
       name: product.name,
       description: product.description,
       price: product.price,
-      stock: product.stock,
+      stock: product.stock ?? 0,
       imageUrl: product.imageUrl,
       productType: product.productType,
       categoryId: product.categoryId

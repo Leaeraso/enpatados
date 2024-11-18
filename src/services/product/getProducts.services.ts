@@ -13,11 +13,13 @@ const getProducts = async () => {
       )
     }
 
-    const productArray: productDTO[] = products.map((product) => {
-      return product.toJSON() as productDTO
+    const productsJSON: productDTO[] = products.map((product) => {
+      const { id, name, description, price, imageUrl, productType, categoryId } = product
+      
+      return { id, name, description, price, imageUrl, productType, categoryId }
     })
 
-    return productArray
+    return productsJSON
   } catch (error) {
     if (error instanceof customError) {
       throw error
