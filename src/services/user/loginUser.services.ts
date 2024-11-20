@@ -52,6 +52,7 @@ const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
       throw error
     }
 
+    console.log(error);
     throw errorHelper.internalServerError(
       'Error al logear al usuario',
       'LOGIN_USER_ERROR'

@@ -7,6 +7,8 @@ const authPermissions = (permissions: string[]) => {
     try {
       const userRole = req.user?.role
 
+      console.log('rol del usuario: ', userRole)
+
       if (permissions.includes(userRole)) {
         next()
       } else {
@@ -31,7 +33,9 @@ const authPermissions = (permissions: string[]) => {
 const authToken = (req: Request, _res: Response, next: NextFunction) => {
   try {
     // Ahora lo envio a traves del header, luego debo utilizarlo en las cookies
-    const token = req.signedCookies.token
+    //const token = req.signedCookies.token
+    const token = req.headers['authorization']?.split(' ')[1]
+    console.log('obteniendo token:', token)
 
     if (!token) {
       throw errorHelper.notAuthorizedError(

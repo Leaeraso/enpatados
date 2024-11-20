@@ -4,7 +4,6 @@ import { customError } from '../../helpers/error.helper'
 
 const getProducts = async (_req: Request, res: Response) => {
   try {
-    console.log('pidiendo productos a la base de datos')
     const products = await productService.getProducts()
 
     res.status(200).json({ products })
