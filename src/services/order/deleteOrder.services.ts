@@ -20,8 +20,8 @@ const deleteOrder = async (id: number) => {
       throw error
     }
     throw errorHelper.internalServerError(
-      'Error al eliminar el producto',
-      'CREATE_USER_ERROR'
+      'Error al eliminar la orden de compra',
+      'DELETE_ORDER_ERROR'
     )
   }
 }

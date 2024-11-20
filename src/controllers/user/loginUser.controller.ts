@@ -29,7 +29,7 @@ const loginUser = async (req: Request, res: Response) => {
     } else {
       res
         .status(500)
-        .json({ message: 'internal server error', error: error.message })
+        .json({ message: 'internal server error' })
     }
   }
 }

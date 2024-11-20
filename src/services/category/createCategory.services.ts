@@ -30,7 +30,7 @@ const createCategory = async(category : categoryDTO) => {
       
         throw errorHelper.internalServerError(
             'Error al crear la categoria',
-            'CREATE_USER_ERROR'
+            'CREATE_CATEGORY_ERROR'
         )
     }
 }

@@ -25,8 +25,8 @@ const updateOrder = async (id: string, updatedOrder: Partial<orderDTO>) => {
         }
       
         throw errorHelper.internalServerError(
-            'Error al modificar el usuario',
-            'CREATE_USER_ERROR'
+            'Error al modificar la orden de compra',
+            'UPDATE_ORDER_ERROR'
         )
     }
 }

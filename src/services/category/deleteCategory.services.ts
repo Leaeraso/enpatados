@@ -22,7 +22,7 @@ const deleteCategory = async (id: number) => {
       
         throw errorHelper.internalServerError(
             'Error al eliminar la categoria',
-            'CREATE_USER_ERROR'
+            'DELETE_CATEGORY_ERROR'
         )
     }
 }

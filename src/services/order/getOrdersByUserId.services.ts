@@ -28,7 +28,7 @@ const getOrdersByUserId = async (id: number) => {
     }
 
     throw errorHelper.internalServerError(
-      'Error al obtener los productos',
+      'Error al obtener la orden de compra',
       'INTERNAL_SERVER_ERROR'
     )
   }

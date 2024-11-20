@@ -60,10 +60,9 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
       throw error
     }
 
-    console.error('Error interno al crear la orden:', error)
     throw errorHelper.internalServerError(
-      'Error al crear el producto',
-      'CREATE_USER_ERROR'
+      'Error al crear la orden de compra',
+      'CREATE_ORDER_ERROR'
     )
   }
 }

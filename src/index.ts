@@ -4,6 +4,8 @@ import router from './routes/index.route'
 import { connection } from './db/connection'
 import cookieParser from 'cookie-parser'
 import setupAssociations from './models/assosiations'
+import swaggerUi from 'swagger-ui-express'
+import swaggerSetup from './docs/swagger'
 
 dotenv.config()
 
@@ -15,6 +17,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser(process.env.SECRET_KEY))
 app.use(router)
+app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerSetup))
 
 setupAssociations()
 

@@ -15,7 +15,7 @@ const createOrder = async (req: Request, res: Response) => {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })
     } else {
-      res.status(500).json({ message: 'Error al registrar el producto' })
+      res.status(500).json({ message: 'internal server error' })
     }
   }
 }

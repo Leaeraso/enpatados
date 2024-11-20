@@ -22,8 +22,8 @@ const updateCategory = async (id: number, updatedData: Partial<categoryDTO>) => 
         }
       
         throw errorHelper.internalServerError(
-            'Error al modificar el producto',
-            'CREATE_USER_ERROR'
+            'Error al modificar la categoria',
+            'UPDATE_CATEGORY_ERROR'
         )
     }
 }

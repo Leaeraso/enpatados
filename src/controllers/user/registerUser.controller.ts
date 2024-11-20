@@ -24,7 +24,7 @@ const registerUser = async (req: Request, res: Response) => {
       res.status(error.httpStatus).json({ error: error.message })
     } else {
       console.error('Internal Server Error:', error)
-      res.status(500).json({ message: 'Error al registrar el usuario' })
+      res.status(500).json({ message: 'internal server error' })
     }
   }
 }
