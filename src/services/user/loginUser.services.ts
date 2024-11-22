@@ -39,7 +39,8 @@ const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
     // informacion que se incluira en el payload  del token JWT
     const tokenInfo = {
       id: loginUser.id,
-      role: loginUser.role
+      role: loginUser.role,
+      email: loginUser.email
     }
 
     const token = jwt.sign(tokenInfo, SECRET_KEY, {

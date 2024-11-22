@@ -13,10 +13,11 @@ const registerUser = async (req: Request, res: Response) => {
     }
     console.log('llamando al servicio')
 
-    await userService.createUser(user)
+    const token = await userService.createUser(user)
 
     res.status(201).json({
-      message: 'Usuario registrado con exito'
+      message: 'Usuario registrado con exito',
+      token
     })
   } catch (error) {
     if (error instanceof customError) {

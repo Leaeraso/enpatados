@@ -3,6 +3,7 @@ import validateHelper from '../../helpers/validateHelper'
 import userModel from '../../models/user/userModel.models'
 import bcrypt from 'bcryptjs'
 import userDto from '../../dto/user/registerUserDTO'
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -35,7 +36,7 @@ const createUser = async (user: userDto) => {
 
     //Crear al nuevo usuario
     console.log('creando al usuario')
-    await userModel.create({
+    const newUser = await userModel.create({
       name: user.name,
       surname: user.surname,
       password: hashPassword,
@@ -47,9 +48,17 @@ const createUser = async (user: userDto) => {
       throw new Error('SECRET_KEY no está definida en las variables de entorno')
     }
 
-   
+    const tokenInfo = {
+      id: newUser.id,
+      role: newUser.role,
+      email: newUser.email
+    }
 
-    return 
+    const token = jwt.sign(tokenInfo, SECRET_KEY, {
+      expiresIn: process.env.EXPIRE_TOKEN
+    })
+
+    return token
   } catch (error) {
     if (error instanceof customError) {
       throw error

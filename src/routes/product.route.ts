@@ -25,7 +25,7 @@ const router = express.Router()
  *     security:
  *       - bearerAuth: []
  */
-router.get('/', authToken, getProducts)
+router.get('/', getProducts)
 
 /**
  * @openapi
@@ -50,7 +50,7 @@ router.get('/', authToken, getProducts)
  *     security:
  *       - bearerAuth: []
  */
-router.get('/:id', authToken, getProduct)
+router.get('/:id', getProduct)
 
 /**
  * @openapi
