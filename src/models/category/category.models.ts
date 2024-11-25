@@ -9,7 +9,9 @@ import { sequelize } from '../../db/dbInstance'
 
 class Category extends Model<InferAttributes<Category>, InferCreationAttributes<Category>> {
     id!: CreationOptional<number>
-    name!: string
+    title!: string
+    subtitle!: string
+    icon!: string
 }
 
 Category.init(
@@ -19,7 +21,17 @@ Category.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        subtitle: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        icon: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true

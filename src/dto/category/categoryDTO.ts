@@ -1,7 +1,9 @@
 interface categoryDTO {
     categoryId?: number
-    name: string
-    productId?: number 
+    title: string
+    subtitle: string
+    icon: string
+    productId?: number
 }
 
 export default categoryDTO

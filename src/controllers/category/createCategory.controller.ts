@@ -5,7 +5,9 @@ import { customError } from '../../helpers/error.helper'
 const createCategory = async (req: Request, res:Response) => {
     try {
         const category = {
-            name: req.body.name
+            title: req.body.title,
+            subtitle: req.body.subtitle,
+            icon: req.body.icon
         }
 
         await categoryService.createCategory(category)
