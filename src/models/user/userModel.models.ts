@@ -9,11 +9,12 @@ import { sequelize } from '../../db/dbInstance'
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   id!: CreationOptional<number>
+  googleId!: string | null
   name!: string
   surname!: string
-  password!: string
+  password!: string | null
   email!: string
-  dob!: Date
+  dob!: Date | null
   role!: CreationOptional<string>
 }
 
@@ -23,6 +24,11 @@ User.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
+    },
+    googleId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      unique: true
     },
     name: {
       type: DataTypes.STRING,

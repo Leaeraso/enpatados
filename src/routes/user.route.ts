@@ -5,7 +5,8 @@ import {
     authSession, 
     passwordRecovery, 
     resetPassword, 
-    updateUser 
+    updateUser,
+    authGoogle
 } from '../controllers/user/index.controller'
 import { authToken } from '../middlewares/middleware'
 
@@ -27,6 +28,8 @@ const router = express.Router()
  *       - bearerAuth: []
  */
 router.get('/auth/token', authToken, authSession)
+
+router.get('/auth/google', authGoogle)
 
 /**
  * @openapi

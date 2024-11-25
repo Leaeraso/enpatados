@@ -22,7 +22,7 @@ const transporter = nodeMailer.createTransport({
 
 const sendPasswordRecoveryMail = async (email: string, token: string) => {
 
-    const url = `http://localhost:3000/user/${token}`
+    const url = `http://localhost:3000/user/reset/${token}`
 
     const mailOptions = ({
         from: EMAIL_USER,

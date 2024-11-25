@@ -4,5 +4,6 @@ import passwordRecovery from './passwordRecovery.services'
 import resetPassword from './resetPassword.services'
 import updateUser from './updateUser.services'
 import getUserById from './getUserById.services'
+import authGoogle from './authGoogle.services';
 
-export default { createUser, loginUser, passwordRecovery, resetPassword, updateUser, getUserById}
+export default { createUser, loginUser, passwordRecovery, resetPassword, updateUser, getUserById, authGoogle}
