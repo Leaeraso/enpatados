@@ -7,7 +7,7 @@ const {EMAIL_USER} = process.env
 const {EMAIL_PASS} = process.env
 const {CORS} = process.env
 
-if(!EMAIL_USER || !EMAIL_PASS || CORS) {
+if(!EMAIL_USER || !EMAIL_PASS || !CORS) {
     throw new Error('Usuario o contraseña incorrecta')
 }
 

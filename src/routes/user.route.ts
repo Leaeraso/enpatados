@@ -6,9 +6,11 @@ import {
     passwordRecovery, 
     resetPassword, 
     updateUser,
+    googleAuthCallback,
     authGoogle
 } from '../controllers/user/index.controller'
 import { authToken } from '../middlewares/middleware'
+import passport from 'passport'
 
 const router = express.Router()
 
@@ -30,6 +32,8 @@ const router = express.Router()
 router.get('/auth/token', authToken, authSession)
 
 router.get('/auth/google', authGoogle)
+
+router.get('/auth/google/callback', passport.authenticate('google', { failureMessage:'Error al loguearse con google', failureRedirect: '/login' }), googleAuthCallback)
 
 /**
  * @openapi

@@ -12,6 +12,10 @@ const updateUser = async (id: string, updatedData: Partial<registerUserDTO>) => 
             throw errorHelper.notFoundError('Usuario no encontrado', 'NOT_FOUND_ERROR')
         }
 
+        if(updatedData.role){
+            throw errorHelper.forbiddenError('No se puede modificar el rol de un usuario', 'FORBIDDEN_ERROR')
+        }
+
         if(updatedData.password) {
             const hashedPassword = await bcrypt.hash(updatedData.password, 10)
             updatedData.password = hashedPassword

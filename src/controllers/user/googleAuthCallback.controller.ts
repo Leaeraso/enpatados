@@ -1,4 +1,5 @@
 import passport from 'passport'
+import '../../docs/passport'
 import { Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
@@ -28,5 +29,5 @@ export const googleAuthCallback = (req: Request, res: Response) => {
     res.status(200).json({
         message: 'Login con Google exitoso',
         token,
-      });
+    });
 }
