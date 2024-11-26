@@ -5,8 +5,9 @@ dotenv.config()
 
 const {EMAIL_USER} = process.env
 const {EMAIL_PASS} = process.env
+const {CORS} = process.env
 
-if(!EMAIL_USER || !EMAIL_PASS) {
+if(!EMAIL_USER || !EMAIL_PASS || CORS) {
     throw new Error('Usuario o contraseña incorrecta')
 }
 
@@ -22,7 +23,7 @@ const transporter = nodeMailer.createTransport({
 
 const sendPasswordRecoveryMail = async (email: string, token: string) => {
 
-    const url = `http://localhost:3000/user/reset/${token}`
+    const url = `${CORS}/user/reset/${token}`
 
     const mailOptions = ({
         from: EMAIL_USER,
