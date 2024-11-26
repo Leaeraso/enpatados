@@ -36,7 +36,7 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
     const newOrder = await orderModel.create({
       date: new Date(),
       total: total,
-      status: 'creado',
+      status: 'pendiente',
       userId: id,
       discount: 0
     })

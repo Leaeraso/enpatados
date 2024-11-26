@@ -39,9 +39,9 @@ Order.init(
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM('creado', 'pendiente', 'pagado', 'cancelado'),
+      type: DataTypes.ENUM('pendiente', 'pagado', 'cancelado'),
       allowNull: false,
-      defaultValue: 'creado'
+      defaultValue: 'pendiente'
     },
     userId: {
       type: DataTypes.INTEGER,
