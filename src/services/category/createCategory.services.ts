@@ -22,7 +22,7 @@ const createCategory = async(category : categoryDTO) => {
 
         await categoryModel.create({
             title: category.title,
-            subtitle: category.subtitle,
+            description: category.description,
             icon: category.icon
         })
     } catch (error) {

@@ -10,7 +10,7 @@ const getOrdersByUserId = async (id: number) => {
       }
     })
 
-    if (orders.length === 0) {
+    if(orders.length === 0) {
       throw errorHelper.notFoundError(
         'Ordenes no encontradas',
         'NOT_FOUND_ERROR'

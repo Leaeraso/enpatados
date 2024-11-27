@@ -1,7 +1,7 @@
 interface categoryDTO {
     categoryId?: number
     title: string
-    subtitle: string
+    description: string
     icon: string
     productId?: number
 }

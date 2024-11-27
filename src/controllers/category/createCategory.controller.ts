@@ -6,7 +6,7 @@ const createCategory = async (req: Request, res:Response) => {
     try {
         const category = {
             title: req.body.title,
-            subtitle: req.body.subtitle,
+            description: req.body.description,
             icon: req.body.icon
         }
 
