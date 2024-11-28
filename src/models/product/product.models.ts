@@ -16,8 +16,6 @@ class Product extends Model<
   description!: string
   price!: number
   stock!: number
-  imageUrl!: string
-  productType!:string
   categoryId!: number
 }
 
@@ -49,14 +47,6 @@ Product.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
-    },
-    imageUrl: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
-    productType: {
-      type: DataTypes.STRING,
-      allowNull: false
     },
     categoryId: {
       type: DataTypes.INTEGER,

@@ -3,8 +3,9 @@ import errorHelper, { customError } from '../../helpers/error.helper'
 import validateHelper from '../../helpers/validateHelper'
 import productModel from '../../models/product/product.models'
 import categoryModel from '../../models/category/category.models'
+import imageModel from '../../models/image/image.models'
 
-const createProduct = async (product: productDTO) => {
+const createProduct = async (product: productDTO, images: string[]) => {
   try {
     await validateHelper(productModel, product)
 
@@ -14,7 +15,7 @@ const createProduct = async (product: productDTO) => {
       }
     })
 
-    if (existingProduct !== null) {
+    if (!existingProduct) {
       throw errorHelper.conflictError(
         'El producto ya existe',
         'PRODUCT_ALREADY_EXISTS'
@@ -27,15 +28,20 @@ const createProduct = async (product: productDTO) => {
       throw errorHelper.notFoundError('No se ha encontrado la categoria', 'NOT_FOUND_ERROR')
     }
 
-    await productModel.create({
+    const newProduct = await productModel.create({
       name: product.name,
       description: product.description,
       price: product.price,
       stock: product.stock ?? 0,
-      imageUrl: product.imageUrl,
-      productType: product.productType,
       categoryId: product.categoryId
     })
+
+    const imagesUrls = images.map((url) => ({
+      url,
+      productId: newProduct.id
+    }))
+
+    await imageModel.bulkCreate(imagesUrls)
 
   } catch (error) {
     if (error instanceof customError) {

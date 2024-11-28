@@ -4,8 +4,6 @@ interface product {
   description: string
   price: number
   stock?: number
-  imageUrl: string
-  productType: string
   categoryId: number
 }
 

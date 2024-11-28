@@ -29,4 +29,3 @@ COPY .env .env
 
 # Ejecutamos el comando para iniciar la aplicación
 CMD ["npm", "start"]
-

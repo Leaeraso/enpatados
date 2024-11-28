@@ -4,17 +4,18 @@ import { customError } from '../../helpers/error.helper'
 
 const createProduct = async (req: Request, res: Response) => {
   try {
+    const {name, description, price, stock, categoryId} = req.body
+    const images: string[] = req.body.images
+
     const product = {
-      name: req.body.name,
-      description: req.body.description,
-      price: req.body.price,
-      stock: req.body.stock,
-      imageUrl: req.body.imageUrl,
-      productType: req.body.productType,
-      categoryId: req.body.categoryId
+      name,
+      description,
+      price,
+      stock,
+      categoryId
     }
 
-    await productService.createProduct(product)
+    await productService.createProduct(product, images)
 
     res.status(201).json({ message: 'Producto registrado con exito' })
   } catch (error) {
