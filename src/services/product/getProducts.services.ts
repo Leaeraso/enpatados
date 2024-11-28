@@ -1,10 +1,19 @@
 import productModel from '../../models/product/product.models'
+import imageModel from '../../models/image/image.models'
 import productDTO from '../../dto/product/productDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 
 const getProducts = async () => {
   try {
-    const products = await productModel.findAll()
+    const products = await productModel.findAll({
+      include: [
+        {
+          model: imageModel,
+          as: 'images',
+          attributes: ['url']
+        }
+      ]
+    })
 
     if (products.length === 0) {
       throw errorHelper.notFoundError(
@@ -14,9 +23,7 @@ const getProducts = async () => {
     }
 
     const productsJSON: productDTO[] = products.map((product) => {
-      const { id, name, description, price, imageUrl, productType, categoryId } = product
-      
-      return { id, name, description, price, imageUrl, productType, categoryId }
+      return product.toJSON() as productDTO
     })
 
     return productsJSON

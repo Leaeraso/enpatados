@@ -1,11 +1,25 @@
 import productModel from '../../models/product/product.models'
+import imageModel from '../../models/image/image.models'
 import productDTO from '../../dto/product/productDTO'
 import errorHelper from '../../helpers/error.helper'
 import { customError } from '../../helpers/error.helper'
 
 const getProductById = async (id: string) => {
   try {
-    const product = await productModel.findByPk(id)
+    const product = await productModel.findOne(
+      {
+        where: {
+          id: id
+        },
+        include: [
+          {
+            model: imageModel,
+            as: 'images',
+            attributes: ['url']
+          }
+        ]
+      }
+    )
 
     if (product === null) {
       throw errorHelper.notFoundError(
