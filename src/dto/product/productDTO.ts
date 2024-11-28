@@ -6,6 +6,7 @@ interface product {
   stock?: number
   images?: string[]
   categoryId: number
+  subcategoryId?: number
 }
 
 export default product

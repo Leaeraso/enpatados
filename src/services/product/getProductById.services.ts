@@ -1,8 +1,10 @@
 import productModel from '../../models/product/product.models'
 import imageModel from '../../models/image/image.models'
+import subcategoryModel from '../../models/subcategory/subcategory.models'
 import productDTO from '../../dto/product/productDTO'
 import errorHelper from '../../helpers/error.helper'
 import { customError } from '../../helpers/error.helper'
+import categoryModel from '../../models/category/category.models'
 
 const getProductById = async (id: string) => {
   try {
@@ -16,6 +18,16 @@ const getProductById = async (id: string) => {
             model: imageModel,
             as: 'images',
             attributes: ['url']
+          },
+          {
+            model: subcategoryModel,
+            as: 'subcategory',
+            attributes: ['title']
+          },
+          {
+            model: categoryModel,
+            as: 'category',
+            attributes: ['title']
           }
         ]
       }

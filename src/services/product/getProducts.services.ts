@@ -2,6 +2,8 @@ import productModel from '../../models/product/product.models'
 import imageModel from '../../models/image/image.models'
 import productDTO from '../../dto/product/productDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
+import subcategoryModel from '../../models/subcategory/subcategory.models'
+import categoryModel from '../../models/category/category.models'
 
 const getProducts = async () => {
   try {
@@ -11,6 +13,16 @@ const getProducts = async () => {
           model: imageModel,
           as: 'images',
           attributes: ['url']
+        },
+        {
+          model: subcategoryModel,
+          as: 'subcategories',
+          attributes: ['title']
+        },
+        {
+          model: categoryModel,
+          as: 'category',
+          attributes: ['title']
         }
       ]
     })

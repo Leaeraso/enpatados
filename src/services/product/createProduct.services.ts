@@ -4,6 +4,7 @@ import validateHelper from '../../helpers/validateHelper'
 import productModel from '../../models/product/product.models'
 import categoryModel from '../../models/category/category.models'
 import imageModel from '../../models/image/image.models'
+import subcategoryModel from '../../models/subcategory/subcategory.models'
 
 const createProduct = async (product: productDTO, images: string[]) => {
   try {
@@ -22,10 +23,18 @@ const createProduct = async (product: productDTO, images: string[]) => {
       )
     }
 
-    const category = categoryModel.findByPk(product.categoryId)
+    const category = await categoryModel.findByPk(product.categoryId)
 
     if (!category) {
       throw errorHelper.notFoundError('No se ha encontrado la categoria', 'NOT_FOUND_ERROR')
+    }
+
+    if(product.subcategoryId !== null) {
+      const subcategory = await subcategoryModel.findByPk(product.subcategoryId)
+
+      if (!subcategory) {
+        throw errorHelper.notFoundError('No se ha encontrado la subcategoria', 'NOT_FOUND_ERROR')
+      }
     }
 
     const newProduct = await productModel.create({
@@ -33,7 +42,8 @@ const createProduct = async (product: productDTO, images: string[]) => {
       description: product.description,
       price: product.price,
       stock: product.stock ?? 0,
-      categoryId: product.categoryId
+      categoryId: product.categoryId,
+      subcategoryId: product.subcategoryId
     })
 
     const imagesUrls = images.map((url) => ({

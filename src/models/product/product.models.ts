@@ -17,6 +17,7 @@ class Product extends Model<
   price!: number
   stock!: number
   categoryId!: number
+  subcategoryId?: number
 }
 
 Product.init(
@@ -49,6 +50,10 @@ Product.init(
       defaultValue: 0
     },
     categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    subcategoryId: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
