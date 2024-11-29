@@ -2,19 +2,26 @@ import categoryDTO from '../../dto/category/categoryDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import categoryModel from '../../models/category/category.models'
 
-const getAllCategories = async () => {
+const getAllCategories = async (page: number, pageSize: number) => {
     try {
-        const categories = await categoryModel.findAll()
+        const options = {
+            limit: pageSize,
+            offset: (page - 1) * pageSize
+        }
 
-        if(categories.length === 0){
+        const {count, rows} = await categoryModel.findAndCountAll(options)
+
+        if(rows.length === 0){
             throw errorHelper.notFoundError('Categorias no encontradas', 'NOT_FOUND_ERROR')
         }
 
-        const categoriesArray: categoryDTO[] = categories.map((category) => {
-            return category.toJSON() as categoryDTO
+        const categories: categoryDTO[] = rows.map((row) => {
+            return row.toJSON() as categoryDTO
         })
 
-        return categoriesArray
+        const totalPages = Math.ceil(count / pageSize)
+
+        return {categories, count, totalPages}
     } catch (error) {
         if (error instanceof customError) {
             throw error
