@@ -7,7 +7,8 @@ import {
     resetPassword, 
     updateUser,
     googleAuthCallback,
-    authGoogle
+    authGoogle,
+    getUsers
 } from '../controllers/user/index.controller'
 import { authToken } from '../middlewares/middleware'
 import passport from 'passport'
@@ -34,6 +35,8 @@ router.get('/auth/token', authToken, authSession)
 router.get('/auth/google', authGoogle)
 
 router.get('/auth/google/callback', passport.authenticate('google', { failureMessage:'Error al loguearse con google', failureRedirect: '/login' }), googleAuthCallback)
+
+router.get('/', authToken, getUsers)
 
 /**
  * @openapi

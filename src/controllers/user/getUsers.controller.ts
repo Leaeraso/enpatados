@@ -1,29 +1,29 @@
 import { Request, Response } from 'express'
-import categoryService from '../../services/category/index.services'
 import { customError } from '../../helpers/error.helper'
+import userService from '../../services/user/index.services'
 
-const getAllCategories = async (req: Request, res:Response) => {
+const getUsers = async (req: Request, res: Response) => {
     try {
         const {page = 1, pageSize = 10} = req.query
 
-        const {categories, totalPages, count} = await categoryService.getAllCategories(Number(page), Number(pageSize))
+        const {users, totalPages, count} = await userService.getUsers(Number(page), Number(pageSize))
 
         res.status(200).json({
-            data: categories,
+            data: users,
             pagination: {
                 currentPage: +page,
                 totalPages,
                 totalRecords: count,
-                pageSize: +page
+                pageSize: +pageSize
             }
         })
     } catch (error) {
         if (error instanceof customError) {
             res.status(error.httpStatus).json({ error: error.message })
-        } else {
-        res.status(500).json({ message: 'internal server error' })
-        }
+          } else {
+            res.status(500).json({ message: 'internal server error' })
+          }
     }
 }
 
-export default getAllCategories
+export default getUsers

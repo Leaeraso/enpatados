@@ -6,5 +6,6 @@ import resetPassword from './resetPassword.controller'
 import updateUser from './updateUser.controller'
 import getUserById from './getUserById.controller'
 import {googleAuthCallback, authGoogle} from './googleAuthCallback.controller'
+import getUsers from './getUsers.controller'
 
-export { registerUser, loginUser, authSession, passwordRecovery, resetPassword, updateUser, getUserById, googleAuthCallback, authGoogle }
+export { registerUser, loginUser, authSession, passwordRecovery, resetPassword, updateUser, getUserById, googleAuthCallback, authGoogle, getUsers }
