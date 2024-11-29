@@ -56,7 +56,7 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureMes
  *       500:
  *         description: Error al recuperar la contraseña
  */
-router.post('/PassRecovery', passwordRecovery)
+router.post('/pass/recovery', passwordRecovery)
 
 /**
  * @openapi
@@ -131,7 +131,7 @@ router.post('/login', loginUser)
  *       500:
  *         description: Error al cambiar la contraseña
  */
-router.put('/reset/:token', resetPassword)
+router.put('/reset',authToken, resetPassword)
 
 /**
  * @openapi

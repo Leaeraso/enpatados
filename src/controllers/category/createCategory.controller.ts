@@ -5,7 +5,7 @@ import { customError } from '../../helpers/error.helper'
 const createCategory = async (req: Request, res:Response) => {
     try {
         const category = {
-            title: req.body.title,
+            name: req.body.name,
             description: req.body.description,
             icon: req.body.icon
         }

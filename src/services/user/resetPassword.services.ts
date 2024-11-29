@@ -14,6 +14,10 @@ if(!SECRET_KEY) {
 
 const resetPassword = async (token: string, newPassword: string) => {
     try {
+        if(!token || typeof token !== 'string'){
+            throw errorHelper.badRequestError('Token no proporcionado', 'BAD_REQUEST_ERROR')
+        }
+
         if(!newPassword) {
             throw errorHelper.badRequestError('Contraseña invalida', 'BAD_REQUEST_ERROR')
         }
@@ -21,6 +25,7 @@ const resetPassword = async (token: string, newPassword: string) => {
         const userEmail = await new Promise<string>((resolve, reject) => {
             jwt.verify(token, SECRET_KEY, async (err, decoded) => {
                 if(err) {
+                    console.log(err);
                     return reject(errorHelper.forbiddenError('Token invalido o expirado', 'INVALID_CREDENTIALS'))
                 }
                 
@@ -32,6 +37,7 @@ const resetPassword = async (token: string, newPassword: string) => {
             })  
         })
 
+        console.log('email del usuario:', userEmail)
         const user = await userModel.findOne({
             where: {
                 email: userEmail
@@ -49,10 +55,10 @@ const resetPassword = async (token: string, newPassword: string) => {
         if (error instanceof customError) {
             throw error
           }
-      
+      console.log(error);
           throw errorHelper.internalServerError(
-            'Error al modificar el producto',
-            'CREATE_USER_ERROR'
+            'Error al modificar la contraseña',
+            'CHANGE_PASSWORD_ERROR'
           )
     }
 }

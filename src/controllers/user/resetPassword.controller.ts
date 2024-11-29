@@ -4,10 +4,10 @@ import { customError } from "../../helpers/error.helper"
 
 const updateUser = async (req: Request, res: Response) => {
     try {
-        const { token } = req.params
-        const { newPassword } = req.body
+        const token = req.query.token as string
+        const {password} = req.body
 
-        await userService.resetPassword(token, newPassword)
+        await userService.resetPassword(token, password)
 
         res.status(200).json({message: 'Contraseña actualizada exitosamente'})
     } catch (error) {

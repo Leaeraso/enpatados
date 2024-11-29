@@ -1,6 +1,6 @@
 interface categoryDTO {
     categoryId?: number
-    title: string
+    name: string
     description: string
     icon: string
     productId?: number

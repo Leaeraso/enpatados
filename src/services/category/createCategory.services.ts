@@ -9,7 +9,7 @@ const createCategory = async(category : categoryDTO) => {
 
         const existingCategory = await categoryModel.findOne({
             where: {
-                title: category.title
+                name: category.name
             }
         })
 
@@ -21,7 +21,7 @@ const createCategory = async(category : categoryDTO) => {
         }
 
         await categoryModel.create({
-            title: category.title,
+            name: category.name,
             description: category.description,
             icon: category.icon
         })

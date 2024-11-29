@@ -12,12 +12,8 @@ const { SECRET_KEY } = process.env
 
 const createUser = async (user: userDto) => {
   try {
-    // Validar modelo de usuario
-    console.log('validando el modelo')
     await validateHelper(userModel, user)
 
-    // verificar si el usuario ya existe
-    console.log('buscando usuario existente')
     const existingUser = await userModel.findOne({
       where: {
         email: user.email
@@ -31,11 +27,8 @@ const createUser = async (user: userDto) => {
       )
     }
 
-    // encriptar la contraseña
     const hashPassword = await bcrypt.hash(user.password, 10)
 
-    //Crear al nuevo usuario
-    console.log('creando al usuario')
     const newUser = await userModel.create({
       name: user.name,
       surname: user.surname,
