@@ -1,6 +1,6 @@
 interface subcategory {
     id?: number
-    title: string
+    name: string
     categoryId: number
 }
 

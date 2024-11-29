@@ -8,10 +8,10 @@ router.get('/', authToken, getAllSubcategories)
 
 router.get('/:id', authToken, getSubcategoryById)
 
-router.post('/', authToken, authPermissions(['admin', 'god']), createSubcategory)
+router.post('/', authToken, authPermissions(['admin']), createSubcategory)
 
-router.put('/:id', authToken, authPermissions(['admin', 'god']), updateSubcategory)
+router.put('/:id', authToken, authPermissions(['admin']), updateSubcategory)
 
-router.delete('/:id', authToken, authPermissions(['admin', 'god']), deleteSubcategory)
+router.delete('/:id', authToken, authPermissions(['admin']), deleteSubcategory)
 
 export default router

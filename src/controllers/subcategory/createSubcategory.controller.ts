@@ -1,16 +1,15 @@
 import { Request, Response } from 'express'
-import categoryService from '../../services/category/index.services'
+import subcategoryService from '../../services/subcategory/index.controller'
 import { customError } from '../../helpers/error.helper'
 
 const createSubcategory = async (req: Request, res:Response) => {
     try {
-        const category = {
-            title: req.body.title,
-            description: req.body.description,
-            icon: req.body.icon
+        const subcategory = {
+            name: req.body.name,
+            categoryId: req.body.categoryId
         }
 
-        await categoryService.createCategory(category)
+        await subcategoryService.createSubcategory(subcategory)
 
         res.status(201).json({mesage: 'Categoria creada con exito'})
     } catch (error) {

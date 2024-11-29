@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import categoryService from '../../services/category/index.services'
+import subcategoryService from '../../services/subcategory/index.controller'
 import { customError } from '../../helpers/error.helper'
 
 const getAllSubcategories = async (_req: Request, res:Response) => {
     try {
-        const categories = await categoryService.getAllCategories()
+        const categories = await subcategoryService.getAllSubcategories()
 
         res.status(200).json({categories})
     } catch (error) {

@@ -10,7 +10,7 @@ const createSubcategory = async(subcategory : subcategoryDTO) => {
 
         const existingSubcategory = await subcategoryModel.findOne({
             where: {
-                title: subcategory.title
+                name: subcategory.name
             }
         })
 
@@ -31,7 +31,7 @@ const createSubcategory = async(subcategory : subcategoryDTO) => {
         }
 
         await subcategoryModel.create({
-            title: subcategory.title,
+            name: subcategory.name,
             categoryId: subcategory.categoryId
         })
     } catch (error) {

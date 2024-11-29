@@ -1,20 +1,20 @@
-import categoryDTO from '../../dto/category/categoryDTO'
+import subcategoryDTO from '../../dto/subcategory/subcategoryDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
-import categoryModel from '../../models/category/category.models'
+import subcategoryModel from '../../models/subcategory/subcategory.models'
 
 const getAllSubcategories = async () => {
     try {
-        const subcategories = await categoryModel.findAll()
+        const subcategories = await subcategoryModel.findAll()
 
         if(subcategories.length === 0){
             throw errorHelper.notFoundError('Categorias no encontradas', 'NOT_FOUND_ERROR')
         }
 
-        const categoriesArray: categoryDTO[] = subcategories.map((subcategory) => {
-            return subcategory.toJSON() as categoryDTO
+        const subcategoriesArray: subcategoryDTO[] = subcategories.map((subcategory) => {
+            return subcategory.toJSON() as subcategoryDTO
         })
 
-        return categoriesArray
+        return subcategoriesArray
     } catch (error) {
         if (error instanceof customError) {
             throw error

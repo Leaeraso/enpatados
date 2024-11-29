@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
-import categoryService from '../../services/category/index.services'
+import subcategoryService from '../../services/subcategory/index.controller'
 import { customError } from '../../helpers/error.helper'
 
 const deleteSubcategory = async (req: Request, res:Response) => {
     try {
         const id = req.params.id
 
-        await categoryService.deleteCategory(Number(id))
+        await subcategoryService.deleteSubcategory(Number(id))
 
         res.status(200).json({message: 'Categoria eliminada exitosamente'})
     } catch (error) {

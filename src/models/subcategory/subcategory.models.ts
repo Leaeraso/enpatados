@@ -9,7 +9,7 @@ import { sequelize } from '../../db/dbInstance'
 
 class Subcategory extends Model<InferAttributes<Subcategory>, InferCreationAttributes<Subcategory>> {
     id!: CreationOptional<number>
-    title!: string
+    name!: string
     categoryId!: number
 }
 
@@ -20,7 +20,7 @@ Subcategory.init(
             primaryKey: true,
             autoIncrement: true
         },
-        title: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
