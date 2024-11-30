@@ -97,12 +97,12 @@ const swaggerDefinition: OAS3Definition = {
             },
             category: {
                 type: 'object',
-                required: ['title', 'subtitle', 'icon'],
+                required: ['name', 'description', 'icon'],
                 properties: {
-                    title: {
+                    name: {
                         type: 'string',
                     },
-                    subtitle: {
+                    description: {
                         type: 'string',
                     },
                     icon: {
