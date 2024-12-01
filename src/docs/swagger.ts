@@ -132,21 +132,12 @@ const swaggerDefinition: OAS3Definition = {
                     },
                 },
             },
-            orderProduct: {
+            subcategory: {
                 type: 'object',
-                required: ['orderId', 'productId', 'quantity', 'subtotal'],
+                required: ['name'],
                 properties: {
-                    orderId: {
-                        type: 'integer',
-                    },
-                    productId: {
-                        type: 'integer',
-                    },
-                    quantity: {
-                        type: 'integer',
-                    },
-                    subtotal: {
-                        type: 'integer',
+                    name: {
+                        type: 'string',
                     },
                 },
             },

@@ -16,7 +16,7 @@ const createCategory = async(category : categoryDTO) => {
         if(existingCategory !== null) {
             throw errorHelper.conflictError(
                 'La categoria ya existe',
-                'PRODUCT_ALREADY_EXISTS'
+                'CATEGORY_ALREADY_EXISTS'
             )
         }
 

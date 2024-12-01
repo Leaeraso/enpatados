@@ -50,6 +50,7 @@ app.use(express.json())
 app.use(cookieParser(process.env.SECRET_KEY))
 app.use(passport.initialize())
 app.use(passport.session())
+
 app.use(router)
 app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerSetup))
 

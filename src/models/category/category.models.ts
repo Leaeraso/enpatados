@@ -11,7 +11,7 @@ class Category extends Model<InferAttributes<Category>, InferCreationAttributes<
     id!: CreationOptional<number>
     name!: string
     description!: string
-    icon!: string
+    icon!: Text
 }
 
 Category.init(
@@ -32,9 +32,8 @@ Category.init(
             unique: true
         },
         icon: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
-            unique: true
         }
     },
     {
