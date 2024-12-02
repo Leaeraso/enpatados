@@ -1,4 +1,4 @@
 node_modules/
 build/
 .env
-config.json
+src/config/config.json

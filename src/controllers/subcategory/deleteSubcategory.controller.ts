@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import subcategoryService from '../../services/subcategory/index.services'
+import subcategoryService from '../../services/subcategory/index.controller'
 import { customError } from '../../helpers/error.helper'
 
 const deleteSubcategory = async (req: Request, res:Response) => {
