@@ -4,8 +4,14 @@ import { customError } from '../../helpers/error.helper'
 
 const getProducts = async (req: Request, res: Response) => {
   try {
-    const {page = 1, pageSize = 10} = req.query
-    const {products, totalPages, count} = await productService.getProducts(Number(page), Number(pageSize))
+    const {page = 1, pageSize = 10, categoryId, subcategoryId, search} = req.query
+    const {products, totalPages, count} = await productService.getProducts(
+      Number(page), 
+      Number(pageSize), 
+      Number(categoryId), 
+      Number(subcategoryId), 
+      search as string
+    )
 
     res.status(200).json({
       data: products,

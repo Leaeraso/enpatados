@@ -16,6 +16,7 @@ const createProduct = async (product: productDTO, images: {url: string}[]) => {
       }
     })
 
+
     if (existingProduct) {
       throw errorHelper.conflictError(
         'El producto ya existe',
@@ -29,7 +30,7 @@ const createProduct = async (product: productDTO, images: {url: string}[]) => {
       throw errorHelper.notFoundError('No se ha encontrado la categoria', 'NOT_FOUND_ERROR')
     }
 
-    if(product.subcategoryId !== null) {
+    if(product.subcategoryId !== undefined && product.subcategoryId !== null ) {
       console.log('subcategoryId', product.subcategoryId);
       const subcategory = await subcategoryModel.findByPk(product.subcategoryId)
 

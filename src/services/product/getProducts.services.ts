@@ -4,12 +4,28 @@ import productDTO from '../../dto/product/productDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import subcategoryModel from '../../models/subcategory/subcategory.models'
 import categoryModel from '../../models/category/category.models'
+import { Op } from 'sequelize'
 
-const getProducts = async (page: number, pageSize: number) => {
+const getProducts = async (page: number, pageSize: number, categoryId?: number, subcategoryId?: number, search?: string) => {
   try {
+    let whereConditional: any = {}
+
+    if(categoryId) {
+      whereConditional['categoryId'] = categoryId
+    }
+    if(subcategoryId) {
+      whereConditional['subcategoryId'] = subcategoryId
+    }
+    if(search){
+      whereConditional[Op.or] = [
+        {name : { [Op.like]: `%${search}%` }}
+      ]
+    }
+
     let options = {
       limit: pageSize,
-      offset: (page - 1) * pageSize
+      offset: (page - 1) * pageSize,
+      where: whereConditional
     }
 
     const {count, rows} = await productModel.findAndCountAll({
