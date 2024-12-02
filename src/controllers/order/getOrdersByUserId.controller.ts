@@ -6,9 +6,19 @@ const getOrdersByUserId = async (req: Request, res: Response) => {
   try {
     const userId = req.params.id
 
-    const orders = await orderService.getOrdersByUserId(Number(userId))
+    const {page = 1, pageSize = 10} = req.query
 
-    res.status(200).json({ orders })
+    const {orders, totalPages, count} = await orderService.getOrdersByUserId(Number(userId), Number(page), Number(pageSize))
+
+    res.status(200).json({
+      data: orders,
+      pagination: {
+        currentPage: +page,
+        totalPages,
+        totalRecords: count,
+        pageSize: +pageSize
+      }
+    })
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })

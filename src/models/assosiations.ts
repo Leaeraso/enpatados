@@ -6,8 +6,8 @@ import Category from './category/category.models'
 import Image from './image/image.models'
 import Subcategory from './subcategory/subcategory.models'
 
-Order.belongsToMany(Product, { through: OrderProduct, foreignKey: 'orderId' })
-Product.belongsToMany(Order, { through: OrderProduct, foreignKey: 'productId' })
+Order.belongsToMany(Product, { through: 'OrderProduct', foreignKey: 'orderId', otherKey: 'productId',as: 'products' })
+Product.belongsToMany(Order, { through: 'OrderProduct', foreignKey: 'productId', otherKey:'orderId', as: 'orders' })
 
 OrderProduct.belongsTo(Order, { foreignKey: 'orderId' })
 OrderProduct.belongsTo(Product, { foreignKey: 'productId' })

@@ -1,6 +1,5 @@
 interface orderProduct {
   id: number
-  price: number
   quantity: number
 }
 

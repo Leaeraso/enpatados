@@ -53,7 +53,7 @@ router.get('/user/:id', authToken, getOrdersByUserId)
  *     security:
  *       - bearerAuth: []
  */
-router.get('/weekly', authToken, authPermissions(['admin', 'god']), getOrdersOfWeek)
+router.get('/week', authToken, authPermissions(['admin', 'god']), getOrdersOfWeek)
 
 /**
  * @openapi

@@ -1,5 +1,4 @@
 import orderModel from '../../models/order/order.models'
-import productModel from '../../models/product/product.models'
 import userModel from '../../models/user/userModel.models'
 import orderDTO from '../../dto/order/orderDTO'
 import { Op } from 'sequelize'
@@ -23,10 +22,6 @@ const getOrdersOfWeek = async (today: Date) => {
                     date: { [Op.between]: [weekStart, weekEnd]}
                 },
                 include: [
-                    {
-                        model: productModel,
-                        attributes: ['name', 'price']
-                    },
                     {
                         model: userModel,
                         attributes: ['name', 'surname']

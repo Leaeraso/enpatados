@@ -6,6 +6,7 @@ import {
   Model
 } from 'sequelize'
 import { sequelize } from '../../db/dbInstance'
+import Product from '../product/product.models'
 
 class Order extends Model<
   InferAttributes<Order>,
@@ -17,6 +18,7 @@ class Order extends Model<
   status!: string
   userId!: number
   discount!: CreationOptional<number>
+  products?: Product[]
 }
 
 Order.init(
@@ -50,7 +52,7 @@ Order.init(
     discount: {
       type: DataTypes.FLOAT,
       allowNull: true
-    }
+    },
   },
   {
     tableName: 'Orders',

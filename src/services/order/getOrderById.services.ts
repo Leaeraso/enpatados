@@ -1,8 +1,9 @@
 import errorHelper, { customError } from '../../helpers/error.helper'
 import orderModel from '../../models/order/order.models'
 import orderDTO from '../../dto/order/orderDTO'
-// import orderProductModel from '../../models/order/orderProduct.models'
 import productModel from '../../models/product/product.models'
+import imageModel from '../../models/image/image.models'
+import userModel from '../../models/user/userModel.models'
 
 const getOrderById = async (id: string) => {
     try {
@@ -16,10 +17,24 @@ const getOrderById = async (id: string) => {
                 include: [
                     {
                         model: productModel,
-                        attributes: ['name', 'imageUrl'],
+                        as: 'products',
+                        attributes: ['name'],
+                        include: [
+                            {
+                                model: imageModel,
+                                as: 'images',
+                                attributes: ['url'],
+                            }
+                        ]
+                    },
+                    {
+                        model: userModel,
+                        attributes: ['name', 'surname']
                     }
                 ]
             })
+
+        console.log(order);
 
         if(order === null) {
             throw errorHelper.notFoundError('Orden no encontrada',

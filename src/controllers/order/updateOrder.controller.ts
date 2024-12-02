@@ -8,7 +8,7 @@ const updateOrder = async (req: Request, res: Response) => {
 
         const updatedOrder = req.body
 
-        const order = await orderService.updateOrder(id, updatedOrder)
+        const order = await orderService.updateOrder(Number(id), updatedOrder)
 
         res.status(200).json({order})
     } catch (error) {

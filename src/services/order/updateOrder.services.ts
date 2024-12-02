@@ -3,19 +3,26 @@ import errorHelper, { customError } from '../../helpers/error.helper'
 import orderModel from '../../models/order/order.models'
 import productModel from '../../models/product/product.models'
 
-const updateOrder = async (id: string, updatedOrder: Partial<orderDTO>) => {
+type ProductWithOrderProduct = productModel & {
+    OrderProduct: {
+        quantity: number
+    }
+}
+
+const updateOrder = async (id: number, updatedOrder: Partial<orderDTO>) => {
     try {
         const order = await orderModel.findOne(
             {
                 where: {
                     orderNumber: id
                 },
-                include: [
-                    {
-                        model: productModel,
-                        attributes: ['name', 'stock', 'id'],
+                include: [{
+                    model: productModel,
+                    as: 'products',
+                    through: {
+                        attributes: ['quantity']
                     }
-                ]
+                }]
             })
 
         if(!order) {
@@ -28,8 +35,26 @@ const updateOrder = async (id: string, updatedOrder: Partial<orderDTO>) => {
             updatedOrder.total = totalWithDisc
         }
 
+        console.log(order);
+
         if(updatedOrder.status === 'pagado'){
-            //Actualizar stock
+            if(!order.products || order.products.length === 0) {
+                throw errorHelper.notFoundError('Productos no encontrados', 'NOT_FOUND_ERROR')
+            }
+
+            console.log(order.products);
+
+            for(const product of order.products as ProductWithOrderProduct[]){
+                const productId = product.id
+                const quantityBought = product.OrderProduct.quantity
+
+                await productModel.decrement('stock', {
+                    by: quantityBought,
+                    where: {
+                        id: productId
+                    }
+                })
+            }
         }
 
         await order.update(updatedOrder)
@@ -39,7 +64,7 @@ const updateOrder = async (id: string, updatedOrder: Partial<orderDTO>) => {
         if (error instanceof customError) {
             throw error
         }
-      
+      console.log(error);
         throw errorHelper.internalServerError(
             'Error al modificar la orden de compra',
             'UPDATE_ORDER_ERROR'

@@ -17,11 +17,20 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
         'BAD_REQUEST_ERROR'
       )
     }
+    const productIds = products.map((product) => product.id)
+
+    const productList = await productModel.findAll({
+      where: {id: productIds}
+    })
+
+    const productMap = new Map(
+      productList.map((product) => [product.id, product])
+    )
 
     let total = 0
 
     for (const item of products) {
-      const product = await productModel.findByPk(item.id)
+      const product = productMap.get(item.id)
 
       if (!product) {
         throw errorHelper.notFoundError(
@@ -30,7 +39,7 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
         )
       }
 
-      total += item.price * item.quantity
+      total += product.price * item.quantity
     }
 
     const newOrder = await orderModel.create({
@@ -42,15 +51,23 @@ const createOrder = async (id: number, products: orderProductDTO[]) => {
     })
 
     for (const item of products) {
+      const product = productMap.get(item.id)
+
+      if (!product) {
+        throw errorHelper.notFoundError(
+          'Producto no encontrado',
+          'NOT_FOUND_ERROR'
+        )
+      }
+
       await orderProductModel.create({
         orderId: newOrder.orderNumber,
         productId: item.id,
         quantity: item.quantity,
-        subtotal: item.quantity * item.price
+        subtotal: item.quantity * product.price
       })
     }
 
-    //falta agregar conexion con api de mercadoPago para pagar y descuentos
     const message = `Hola enpatados! Acabo de visitar su sitio web y he comprado unas medias, mi numero de orden es ${newOrder.orderNumber}`
     const whatsAppUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`
 
