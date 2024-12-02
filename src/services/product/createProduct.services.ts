@@ -6,7 +6,7 @@ import categoryModel from '../../models/category/category.models'
 import imageModel from '../../models/image/image.models'
 import subcategoryModel from '../../models/subcategory/subcategory.models'
 
-const createProduct = async (product: productDTO, images: string[]) => {
+const createProduct = async (product: productDTO, images: {url: string}[]) => {
   try {
     await validateHelper(productModel, product)
 
@@ -16,7 +16,7 @@ const createProduct = async (product: productDTO, images: string[]) => {
       }
     })
 
-    if (!existingProduct) {
+    if (existingProduct) {
       throw errorHelper.conflictError(
         'El producto ya existe',
         'PRODUCT_ALREADY_EXISTS'
@@ -30,6 +30,7 @@ const createProduct = async (product: productDTO, images: string[]) => {
     }
 
     if(product.subcategoryId !== null) {
+      console.log('subcategoryId', product.subcategoryId);
       const subcategory = await subcategoryModel.findByPk(product.subcategoryId)
 
       if (!subcategory) {
@@ -46,10 +47,14 @@ const createProduct = async (product: productDTO, images: string[]) => {
       subcategoryId: product.subcategoryId
     })
 
-    const imagesUrls = images.map((url) => ({
-      url,
+    console.log('imagenes', images);
+
+    const imagesUrls = images.map((image) => ({
+      url: image.url,
       productId: newProduct.id
     }))
+    
+    // console.log('imagenes', imagesUrls);
 
     await imageModel.bulkCreate(imagesUrls)
 
@@ -57,7 +62,7 @@ const createProduct = async (product: productDTO, images: string[]) => {
     if (error instanceof customError) {
       throw error
     }
-
+console.log(error);
     throw errorHelper.internalServerError(
       'Error al crear el producto',
       'CREATE_USER_ERROR'

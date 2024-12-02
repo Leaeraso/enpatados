@@ -15,6 +15,6 @@ router.use('/order', orderRoute)
 
 router.use('/category', categoryRoute)
 
-router.use('/subcategories', subcategoryRoute)
+router.use('/subcategory', subcategoryRoute)
 
 export default router

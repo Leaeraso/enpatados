@@ -22,12 +22,12 @@ const getProductById = async (id: string) => {
           {
             model: subcategoryModel,
             as: 'subcategory',
-            attributes: ['title']
+            attributes: ['name']
           },
           {
             model: categoryModel,
             as: 'category',
-            attributes: ['title']
+            attributes: ['name']
           }
         ]
       }

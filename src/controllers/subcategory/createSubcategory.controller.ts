@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import subcategoryService from '../../services/subcategory/index.controller'
+import subcategoryService from '../../services/subcategory/index.services'
 import { customError } from '../../helpers/error.helper'
 
 const createSubcategory = async (req: Request, res:Response) => {
@@ -11,7 +11,7 @@ const createSubcategory = async (req: Request, res:Response) => {
 
         await subcategoryService.createSubcategory(subcategory)
 
-        res.status(201).json({mesage: 'Categoria creada con exito'})
+        res.status(201).json({message: 'Categoria creada con exito'})
     } catch (error) {
         if (error instanceof customError) {
             res.status(error.httpStatus).json({ error: error.message })

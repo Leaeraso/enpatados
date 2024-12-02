@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import subcategoryService from '../../services/subcategory/index.controller'
+import subcategoryService from '../../services/subcategory/index.services'
 import { customError } from '../../helpers/error.helper'
 
 const getSubcategoryById = async (req: Request, res:Response) => {

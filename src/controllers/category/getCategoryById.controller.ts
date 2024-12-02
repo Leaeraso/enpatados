@@ -6,7 +6,7 @@ const getCategoryById = async (req: Request, res:Response) => {
     try {
         const id = req.params.id
 
-        const category = await categoryService.getCategoryById(id)
+        const category = await categoryService.getCategoryById(Number(id))
 
         res.status(200).json({ category })
     } catch (error) {

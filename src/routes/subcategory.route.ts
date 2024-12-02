@@ -4,9 +4,9 @@ import { getAllSubcategories, getSubcategoryById, createSubcategory, updateSubca
 
 const router = express.Router()
 
-router.get('/', authToken, getAllSubcategories)
+router.get('/', getAllSubcategories)
 
-router.get('/:id', authToken, getSubcategoryById)
+router.get('/:id', getSubcategoryById)
 
 router.post('/', authToken, authPermissions(['admin']), createSubcategory)
 

@@ -21,7 +21,7 @@ Image.init(
             autoIncrement: true
         },
         url: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(2048),
             allowNull: false
         },
         productId: {

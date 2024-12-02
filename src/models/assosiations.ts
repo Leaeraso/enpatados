@@ -15,17 +15,17 @@ OrderProduct.belongsTo(Product, { foreignKey: 'productId' })
 User.hasMany(Order, { foreignKey: 'userId' })
 Order.belongsTo(User, { foreignKey: 'userId' })
 
-Category.hasMany(Product, {foreignKey: 'categoryId'})
-Product.belongsTo(Category, {foreignKey: 'categoryId'})
+Category.hasMany(Product, {foreignKey: 'categoryId', as:'products'})
+Product.belongsTo(Category, {foreignKey: 'categoryId', as:'category'})
 
 Category.hasMany(Subcategory, {foreignKey:'categoryId'})
 Subcategory.belongsTo(Category, {foreignKey: 'categoryId'})
 
-Subcategory.hasMany(Product, {foreignKey: 'subcategoryId'})
-Product.belongsTo(Subcategory, {foreignKey: 'subcategoryId'})
+Subcategory.hasMany(Product, {foreignKey: 'subcategoryId', as:'products'})
+Product.belongsTo(Subcategory, {foreignKey: 'subcategoryId', as:'subcategory'})
 
-Product.hasMany(Image, {foreignKey: 'productId'})
-Image.belongsTo(Product, {foreignKey: 'productId'})
+Product.hasMany(Image, {foreignKey: 'productId', as:'images'})
+Image.belongsTo(Product, {foreignKey: 'productId', as:'product'})
 
 export default function setupAssociations() {
 }

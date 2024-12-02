@@ -4,15 +4,16 @@ import { customError } from '../../helpers/error.helper'
 
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const {name, description, price, stock, categoryId} = req.body
-    const images: string[] = req.body.images
+    const {name, description, price, stock, categoryId, subcategoryId} = req.body
+    const images: {url:string}[] = req.body.images
 
     const product = {
       name,
       description,
       price,
       stock,
-      categoryId
+      categoryId,
+      subcategoryId
     }
 
     await productService.createProduct(product, images)

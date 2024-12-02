@@ -16,7 +16,7 @@ const getAllCategories = async (page: number, pageSize: number) => {
         }
 
         const categories: categoryDTO[] = rows.map((row) => {
-            return row.toJSON() as categoryDTO
+            return row.toJSON()
         })
 
         const totalPages = Math.ceil(count / pageSize)

@@ -2,7 +2,7 @@ import categoryDTO from '../../dto/category/categoryDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
 import categoryModel from '../../models/category/category.models'
 
-const getCategoryById = async (id: string) => {
+const getCategoryById = async (id: number) => {
     try {
         const category = await categoryModel.findByPk(id)
 

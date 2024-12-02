@@ -7,7 +7,7 @@ const getAllSubcategories = async () => {
         const subcategories = await subcategoryModel.findAll()
 
         if(subcategories.length === 0){
-            throw errorHelper.notFoundError('Categorias no encontradas', 'NOT_FOUND_ERROR')
+            throw errorHelper.notFoundError('Subcategorias no encontradas', 'NOT_FOUND_ERROR')
         }
 
         const subcategoriesArray: subcategoryDTO[] = subcategories.map((subcategory) => {

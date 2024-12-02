@@ -19,7 +19,7 @@ const router = express.Router()
  *     security:
  *       - bearerAuth: []
  */
-router.get('/', authToken, getAllCategories)
+router.get('/', getAllCategories)
 
 /**
  * @openapi
@@ -44,7 +44,7 @@ router.get('/', authToken, getAllCategories)
  *     security:
  *       - bearerAuth: []
  */
-router.get('/:id', authToken, getCategoryById)
+router.get('/:id', getCategoryById)
 
 /**
  * @openapi

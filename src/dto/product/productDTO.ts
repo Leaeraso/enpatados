@@ -3,10 +3,10 @@ interface product {
   name: string
   description: string
   price: number
-  stock?: number
+  stock: number
   images?: string[]
   categoryId: number
-  subcategoryId?: number
+  subcategoryId?: number | undefined
 }
 
 export default product

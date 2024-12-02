@@ -22,13 +22,13 @@ const getProducts = async (page: number, pageSize: number) => {
         },
         {
           model: subcategoryModel,
-          as: 'subcategories',
-          attributes: ['title']
+          as: 'subcategory',
+          attributes: ['name']
         },
         {
           model: categoryModel,
           as: 'category',
-          attributes: ['title']
+          attributes: ['name']
         }
       ]
     })
@@ -51,7 +51,7 @@ const getProducts = async (page: number, pageSize: number) => {
     if (error instanceof customError) {
       throw error
     }
-
+console.log(error);
     throw errorHelper.internalServerError(
       'Error al obtener los productos',
       'INTERNAL_SERVER_ERROR'
