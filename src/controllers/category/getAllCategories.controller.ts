@@ -2,21 +2,11 @@ import { Request, Response } from 'express'
 import categoryService from '../../services/category/index.services'
 import { customError } from '../../helpers/error.helper'
 
-const getAllCategories = async (req: Request, res:Response) => {
+const getAllCategories = async (_req: Request, res:Response) => {
     try {
-        const {page = 1, pageSize = 10} = req.query
+        const categories = await categoryService.getAllCategories()
 
-        const {categories, totalPages, count} = await categoryService.getAllCategories(Number(page), Number(pageSize))
-
-        res.status(200).json({
-            data: categories,
-            pagination: {
-                currentPage: +page,
-                totalPages,
-                totalRecords: count,
-                pageSize: +page
-            }
-        })
+        res.status(200).json(categories)
     } catch (error) {
         if (error instanceof customError) {
             res.status(error.httpStatus).json({ error: error.message })

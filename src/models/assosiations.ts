@@ -18,8 +18,8 @@ Order.belongsTo(User, { foreignKey: 'userId' })
 Category.hasMany(Product, {foreignKey: 'categoryId', as:'products'})
 Product.belongsTo(Category, {foreignKey: 'categoryId', as:'category'})
 
-Category.hasMany(Subcategory, {foreignKey:'categoryId'})
-Subcategory.belongsTo(Category, {foreignKey: 'categoryId'})
+Category.hasMany(Subcategory, {foreignKey:'categoryId', as: 'subcategories'})
+Subcategory.belongsTo(Category, {foreignKey: 'categoryId', as: 'category'})
 
 Subcategory.hasMany(Product, {foreignKey: 'subcategoryId', as:'products'})
 Product.belongsTo(Subcategory, {foreignKey: 'subcategoryId', as:'subcategory'})
