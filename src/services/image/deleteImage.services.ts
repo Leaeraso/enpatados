@@ -1,17 +1,17 @@
 import errorHelper, { customError } from '../../helpers/error.helper'
-import productModel from '../../models/product/product.models'
+import imageModel from '../../models/image/image.models'
 
-const deleteProduct = async (id: number) => {
+const deleteImage = async (id: number) => {
   try {
-    const deletedProduct = await productModel.destroy({
+    const deletedImage = await imageModel.destroy({
       where: {
         id: id
       }
     })
 
-    if (deletedProduct === 0) {
+    if (deletedImage === 0) {
       throw errorHelper.badRequestError(
-        'Producto no encotrado',
+        'Imagen no encotrado',
         'BAD_REQUEST_ERROR'
       )
     }
@@ -21,10 +21,10 @@ const deleteProduct = async (id: number) => {
     }
 
     throw errorHelper.internalServerError(
-      'Error al eliminar el producto',
-      'DELETE_PRODUCT_ERROR'
+      'Error al eliminar la imagen',
+      'DELETE_IMAGE_ERROR'
     )
   }
 }
 
-export default deleteProduct
+export default deleteImage

@@ -1,14 +1,16 @@
 import { Request, Response } from 'express'
+import imageService from '../../services/image/index.services'
 import { customError } from '../../helpers/error.helper'
-import orderService from '../../services/order/index.services'
 
-const getOrderDetails = async (req: Request, res: Response) => {
+const updateImage = async (req: Request, res: Response) => {
   try {
-    const orderId = req.params.id
+    const id = req.params.id
 
-    const details = await orderService.getOrderDetails(Number(orderId))
+    const updatedData = req.body
 
-    res.status(200).json({ details })
+    const image = await imageService.updateImage(Number(id), updatedData)
+
+    res.status(200).json({ image })
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })
@@ -18,4 +20,4 @@ const getOrderDetails = async (req: Request, res: Response) => {
   }
 }
 
-export default getOrderDetails
+export default updateImage

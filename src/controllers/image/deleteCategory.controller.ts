@@ -1,14 +1,14 @@
 import { Request, Response } from 'express'
-import productService from '../../services/product/index.services'
+import imageService from '../../services/image/index.services'
 import { customError } from '../../helpers/error.helper'
 
-const deleteProduct = async (req: Request, res: Response) => {
+const deleteImage = async (req: Request, res: Response) => {
   try {
     const id = req.params.id
 
-    await productService.deleteProduct(Number(id))
+    await imageService.deleteImage(Number(id))
 
-    res.status(200).json({ message: 'Producto eliminado con exito' })
+    res.status(200).json({ message: 'Imagen eliminada con exito' })
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message })
@@ -18,4 +18,4 @@ const deleteProduct = async (req: Request, res: Response) => {
   }
 }
 
-export default deleteProduct
+export default deleteImage

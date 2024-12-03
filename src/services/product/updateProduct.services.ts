@@ -23,7 +23,7 @@ const updateProduct = async (id: number, updatedData: Partial<productDTO>) => {
 
     throw errorHelper.internalServerError(
       'Error al modificar el producto',
-      'CREATE_USER_ERROR'
+      'UPDATE_PRODUCT_ERROR'
     )
   }
 }

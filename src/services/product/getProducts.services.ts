@@ -50,10 +50,6 @@ const getProducts = async (page: number, pageSize: number, categoryId?: number, 
       ]
     })
 
-    console.log("Condiciones del WHERE:", whereConditional)
-    console.log("Total de registros:", count)
-    console.log("Productos devueltos:", rows.length)
-
     if (rows.length === 0) {
       throw errorHelper.notFoundError(
         'Productos no encontrados',
@@ -72,7 +68,6 @@ const getProducts = async (page: number, pageSize: number, categoryId?: number, 
     if (error instanceof customError) {
       throw error
     }
-console.log(error);
     throw errorHelper.internalServerError(
       'Error al obtener los productos',
       'INTERNAL_SERVER_ERROR'
