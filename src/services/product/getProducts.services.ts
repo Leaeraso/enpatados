@@ -30,6 +30,7 @@ const getProducts = async (page: number, pageSize: number, categoryId?: number, 
 
     const {count, rows} = await productModel.findAndCountAll({
       ...options,
+      distinct: true,
       include: [
         {
           model: imageModel,
@@ -48,6 +49,10 @@ const getProducts = async (page: number, pageSize: number, categoryId?: number, 
         }
       ]
     })
+
+    console.log("Condiciones del WHERE:", whereConditional)
+    console.log("Total de registros:", count)
+    console.log("Productos devueltos:", rows.length)
 
     if (rows.length === 0) {
       throw errorHelper.notFoundError(

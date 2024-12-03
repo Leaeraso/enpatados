@@ -9,7 +9,10 @@ const getUsers = async (page: number, pageSize: number) => {
             offset: (page - 1) * pageSize
         }
 
-        const {count, rows} = await userModel.findAndCountAll(options)
+        const {count, rows} = await userModel.findAndCountAll({
+            ...options,
+            distinct: true
+        })
 
         if(rows.length === 0){
             throw errorHelper.notFoundError(
