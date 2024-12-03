@@ -32,10 +32,51 @@ const router = express.Router()
  */
 router.get('/auth/token', authToken, authSession)
 
+/**
+ * @openapi
+ * /user/auth/google:
+ *   get:
+ *     tags:
+ *       - users
+ *     summary: Autenticarse con google
+ *     responses:
+ *       200:
+ *         description: Llama al callback de google para devolver algo al usuario
+ *       500:
+ *         description: Error al veriricar la sesion
+ */
 router.get('/auth/google', authGoogle)
 
+/**
+ * @openapi
+ * /user/auth/google:
+ *   get:
+ *     tags:
+ *       - users
+ *     summary: Autenticarse con google
+ *     responses:
+ *       200:
+ *         description: Devuelve un token al usuario
+ *       500:
+ *         description: Error al veriricar la sesion
+ */
 router.get('/auth/google/callback', passport.authenticate('google', { failureMessage:'Error al loguearse con google', failureRedirect: '/login' }), googleAuthCallback)
 
+/**
+ * @openapi
+ * /user/auth/google:
+ *   get:
+ *     tags:
+ *       - users
+ *     summary: Obtener todos los usuarios
+ *     responses:
+ *       200:
+ *         description: Devuelve un array de usuarios
+ *       500:
+ *         description: No se pudo obtener los usuarios
+*       security:
+ *       - bearerAuth: []
+ */
 router.get('/', authToken, getUsers)
 
 /**
@@ -133,6 +174,8 @@ router.post('/login', loginUser)
  *         description: Invalid token
  *       500:
  *         description: Error al cambiar la contraseña
+*       security:
+ *       - bearerAuth: []
  */
 router.put('/reset',authToken, resetPassword)
 

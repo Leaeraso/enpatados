@@ -22,7 +22,7 @@ const createUser = async (user: userDto) => {
 
     if (existingUser !== null) {
       throw errorHelper.badRequestError(
-        'El usuario ya existe',
+        'Existe un usuario registrado con este email',
         'USER_ALREADY_EXISTS'
       )
     }

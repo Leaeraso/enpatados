@@ -110,6 +110,18 @@ const swaggerDefinition: OAS3Definition = {
                     },
                 },
             },
+            subcategory: {
+                type: 'object',
+                required: ['name', 'categoryId'],
+                properties: {
+                    name: {
+                        type: 'string',
+                    },
+                    categoryId: {
+                        type: 'integer',
+                    },
+                },
+            },
             order: {
                 type: 'object',
                 required: ['date', 'total', 'status', 'userId', 'discount'],
@@ -129,15 +141,6 @@ const swaggerDefinition: OAS3Definition = {
                     },
                     discount: {
                         type: 'integer',
-                    },
-                },
-            },
-            subcategory: {
-                type: 'object',
-                required: ['name'],
-                properties: {
-                    name: {
-                        type: 'string',
                     },
                 },
             },

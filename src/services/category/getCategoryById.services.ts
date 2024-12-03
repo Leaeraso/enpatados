@@ -1,10 +1,22 @@
 import categoryDTO from '../../dto/category/categoryDTO'
 import errorHelper, { customError } from '../../helpers/error.helper'
+import subcategoryModel from '../../models/subcategory/subcategory.models'
 import categoryModel from '../../models/category/category.models'
 
 const getCategoryById = async (id: number) => {
     try {
-        const category = await categoryModel.findByPk(id)
+        const category = await categoryModel.findOne({
+            where: {
+                id: id
+            },
+            include: [
+                {
+                    model: subcategoryModel,
+                    as: 'subcategories',
+                    attributes: ['id','name']
+                }
+            ]
+        })
 
         if(!category) {
             throw errorHelper.notFoundError(

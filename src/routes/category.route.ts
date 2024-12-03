@@ -16,8 +16,6 @@ const router = express.Router()
  *         description: Retorna array de categorias
  *       500:
  *         description: Error al obtener las categorias
- *     security:
- *       - bearerAuth: []
  */
 router.get('/', getAllCategories)
 
@@ -41,8 +39,6 @@ router.get('/', getAllCategories)
  *         description: Category not found
  *       500:
  *         description: Error al obtener la categoria
- *     security:
- *       - bearerAuth: []
  */
 router.get('/:id', getCategoryById)
 
@@ -125,7 +121,7 @@ router.put('/:id', authToken, authPermissions(['admin', 'god']), updateCategory)
  *       200:
  *         description: Categoria eliminada exitosamente
  *       404:
- *         description: User not found
+ *         description: Category not found
  *       500:
  *         description: Error al eliminar la categoria
  *     security:

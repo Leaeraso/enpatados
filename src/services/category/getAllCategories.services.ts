@@ -10,7 +10,7 @@ const getAllCategories = async () => {
                 {
                     model: subcategoryModel,
                     as: 'subcategories',
-                    attributes: ['name']
+                    attributes: ['id', 'name']
                 }
             ]
         })

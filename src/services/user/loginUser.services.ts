@@ -26,7 +26,7 @@ const loginUser = async (user: loginUserDTO): Promise<string | undefined> => {
 
     if (!validation) {
       throw errorHelper.notAuthorizedError(
-        'Usuario no autorizado',
+        'Contraseña incorrecta',
         'INVALID_CREDENTIALS'
       )
     }

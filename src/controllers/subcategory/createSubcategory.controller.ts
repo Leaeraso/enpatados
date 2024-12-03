@@ -11,7 +11,7 @@ const createSubcategory = async (req: Request, res:Response) => {
 
         await subcategoryService.createSubcategory(subcategory)
 
-        res.status(201).json({message: 'Categoria creada con exito'})
+        res.status(201).json({message: 'Subcategoria creada con exito'})
     } catch (error) {
         if (error instanceof customError) {
             res.status(error.httpStatus).json({ error: error.message })
