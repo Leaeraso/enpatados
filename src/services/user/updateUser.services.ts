@@ -3,7 +3,7 @@ import errorHelper, { customError } from '../../helpers/error.helper'
 import userModel from '../../models/user/userModel.models'
 import bcrypt from 'bcryptjs'
 
-const updateUser = async (id: string, updatedData: Partial<registerUserDTO>) => {
+const updateUser = async (id: string, role: string, updatedData: Partial<registerUserDTO>) => {
     try {
         console.log('Obteniendo al usuario...');
         const user = await userModel.findByPk(id)
@@ -12,7 +12,7 @@ const updateUser = async (id: string, updatedData: Partial<registerUserDTO>) => 
             throw errorHelper.notFoundError('Usuario no encontrado', 'NOT_FOUND_ERROR')
         }
 
-        if(updatedData.role){
+        if(updatedData.role && role !='admin'){
             throw errorHelper.forbiddenError('No se puede modificar el rol de un usuario', 'FORBIDDEN_ERROR')
         }
 

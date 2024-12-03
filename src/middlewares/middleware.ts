@@ -7,8 +7,6 @@ const authPermissions = (permissions: string[]) => {
     try {
       const userRole = req.user?.role
 
-      console.log('rol del usuario: ', userRole)
-
       if (permissions.includes(userRole)) {
         next()
       } else {

@@ -4,14 +4,13 @@ import { customError } from "../../helpers/error.helper";
 
 const updateUser = async (req: Request, res: Response) => {
     try {
-        console.log('obteiendo datos...');
         const id = req.params.id
 
-        const updatedData = req.body
-        console.log('Data = ', updatedData);
+        const role = req.user.role
 
-        console.log('Llamando al servicio...');
-        const user = await userService.updateUser(String(id), updatedData)
+        const updatedData = req.body
+
+        const user = await userService.updateUser(String(id), updatedData, role)
 
         res.status(200).json({user})
     } catch (error) {
