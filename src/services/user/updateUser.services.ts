@@ -12,7 +12,7 @@ const updateUser = async (id: string, role: string, updatedData: Partial<registe
             throw errorHelper.notFoundError('Usuario no encontrado', 'NOT_FOUND_ERROR')
         }
 
-        if(updatedData.role && role !='admin'){
+        if(updatedData.role && role !=='admin'){
             throw errorHelper.forbiddenError('No se puede modificar el rol de un usuario', 'FORBIDDEN_ERROR')
         }
 
