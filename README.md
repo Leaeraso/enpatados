@@ -98,6 +98,6 @@ http://localhost:3000/documentation/
 ## Licencia
 
 <p>
-Este proyecto está bajo la Licencia MIT. Consulta el archivo ```LICENSE``` para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo ` LICENSE ` para más detalles.
 </p>
 
