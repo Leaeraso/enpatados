@@ -14,6 +14,9 @@ Algunos de los puntos que se trabajaron:
 - Manejo de imagenes de los productos.
 - Gestión de usuarios a través de roles.
 
+------------
+
+
 ### Tecnologias utilizadas
 <ol>
 <li>NodeJS con Express</li>
@@ -27,6 +30,9 @@ Algunos de los puntos que se trabajaron:
 </ol>
 
 **Entre otras...**
+
+------------
+
 
 ## Instalación y utilización
 
@@ -53,6 +59,9 @@ npm run dev
 
 ```
 
+------------
+
+
 ## Configuración de variables de entorno
 ### Variables de Entorno
 
@@ -74,7 +83,7 @@ npm run dev
 | `GOOGLE_CLIENT_SECRET` | Secreto de cliente de Google para autenticación OAuth 2.0. |
 | `API_URL` | URL base de la API. |
 
-## Obtención de variables
+### Obtención de variables
 #### 1. EMAIL_PASS(Contraseña de aplicación):
 - Ir a la configuración de tu proveedor de email
 - Activar la autenticación en dos pasos
@@ -85,6 +94,9 @@ npm run dev
 - Habilitar la API de OAuth 2.0
 - Configurar las credenciales y URLs de redirección
 
+------------
+
+
 ## Documentación
 <p>
 Para utilizar la documentación de la API y probar los endpoints, iniciar el servidor y entrar al siguiente endpoint:
@@ -94,6 +106,9 @@ http://localhost:3000/documentation/
 
 ```
 </p>
+
+------------
+
 
 ## Licencia
 
