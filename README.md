@@ -1,18 +1,18 @@
 # API Enpatados
 
-Este proyecto es una APIrest para un e-commerce para la venta de medias y lentes de sol, con psible expansion a mas indumentaria. Permite a los usuarios poder explorar productos, agregar al carrito, realizar la compra
+Este proyecto es una APIrest para un e-commerce para la venta de medias y lentes de sol, con posible expansion a mas productos. Permite a los usuarios poder explorar productos, agregar al carrito, realizar compras y gestionar pedidos.
 
 <p>
 Algunos de los puntos que se trabajaron:
 </p>
 
-- Alta, baja y modificacion de productos
-- Gestion de registro e inicio de sesión con autenticación y encriptado
-- Administración de ordenes de compra con estados
-- Actualización de stock
-- Alta, baja y modificación de categorias y subcategorias
-- Manejo de imagenes de los productos
-- Gestion de usuarios a traves de roles
+- Alta, baja y modificación de productos.
+- Gestión de registro e inicio de sesión con autenticación y encriptado.
+- Administración de ordenes de compra con estados.
+- Actualización de stock.
+- Alta, baja y modificación de categorias y subcategorias.
+- Manejo de imagenes de los productos.
+- Gestión de usuarios a través de roles.
 
 ### Tecnologias utilizadas
 <ol>
@@ -98,6 +98,7 @@ http://localhost:3000/documentation/
 ## Licencia
 
 <p>
-Este proyecto está bajo la Licencia MIT. Consulta el archivo ` LICENSE ` para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
 </p>
 
