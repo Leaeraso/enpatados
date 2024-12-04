@@ -95,6 +95,18 @@ const swaggerDefinition: OAS3Definition = {
                     },
                 },
             },
+            image: {
+                type: 'object',
+                required: ['url', 'productId'],
+                properties: {
+                    url: {
+                        type: 'string',
+                    },
+                    productId: {
+                        type: 'integer',
+                    },
+                },
+            },
             category: {
                 type: 'object',
                 required: ['name', 'description', 'icon'],
