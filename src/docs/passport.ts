@@ -7,9 +7,9 @@ dotenv.config()
 
 const {GOOGLE_CLIENT_ID} = process.env
 const {GOOGLE_CLIENT_SECRET} = process.env
-const {API_URL} = process.env
+const {CORS} = process.env
 
-if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !API_URL) {
+if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !CORS) {
     throw new Error('SECRET_KEY no está definida en las variables de entorno')
   }
 
@@ -18,7 +18,7 @@ passport.use(
         {
           clientID: GOOGLE_CLIENT_ID,
           clientSecret: GOOGLE_CLIENT_SECRET,
-          callbackURL: `${API_URL}/user/auth/google/callback`,
+          callbackURL: `${CORS[0]}/auth/google`,
         },
         async (_accessToken, _refreshToken, profile, done) => {
         try {
