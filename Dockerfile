@@ -25,7 +25,8 @@ ENV NODE_ENV=production
 
 # Configuramos las variables de entorno
 # Asegúrate de que el archivo .env esté en el mismo directorio que el Dockerfile
-COPY .env .env
+# Para desarrollo tener un .env y descomentar la linea de abajo
+# COPY .env .env
 
 # Ejecutamos el comando para iniciar la aplicación
 CMD ["npm", "start"]
