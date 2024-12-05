@@ -15,12 +15,13 @@ RUN npm install --production
 COPY . .
 
 # Compilamos el proyecto TypeScript a JavaScript
-RUN npm run tsc
+RUN npx tsc
 
 # Exponemos el puerto en el que se ejecuta la aplicación
 EXPOSE 3000
 
 # Definimos una variable de entorno que usa la configuración de .env
+# Descomentar para el desarrollo
 #ENV NODE_ENV=production
 
 # Configuramos las variables de entorno
