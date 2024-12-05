@@ -29,7 +29,7 @@ passport.use(
         if (existingUser) {
             return done(null, existingUser)
         }
-
+        console.log('API_URL:', API_URL)
         console.log('Perfil de Google:', profile)
     
 
