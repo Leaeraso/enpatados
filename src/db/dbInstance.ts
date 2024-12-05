@@ -3,16 +3,19 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const MYSQL_HOST: string = process.env.MYSQL_HOST!
-const MYSQL_USER: string = process.env.MYSQL_USER!
-const MYSQL_PASS: string = process.env.MYSQL_PASS!
-const MYSQL_DB: string = process.env.MYSQL_DB!
-const MYSQL_PORT: number = parseInt(process.env.MYSQL_PORT!)
+const {MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, MYSQL_PORT}= process.env
 
-const sequelize = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PASS, {
-  host: MYSQL_HOST,
+
+const sequelize = new Sequelize(MYSQL_DB!, MYSQL_USER!, MYSQL_PASS!, {
+  host: MYSQL_HOST!,
   dialect: 'mysql',
-  port: MYSQL_PORT
+  port: Number(MYSQL_PORT),
+  logging: false,
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 })
 
 
