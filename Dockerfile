@@ -21,7 +21,7 @@ RUN npm run tsc
 EXPOSE 3000
 
 # Definimos una variable de entorno que usa la configuración de .env
-ENV NODE_ENV=production
+#ENV NODE_ENV=production
 
 # Configuramos las variables de entorno
 # Asegúrate de que el archivo .env esté en el mismo directorio que el Dockerfile
