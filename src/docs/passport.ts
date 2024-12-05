@@ -18,7 +18,7 @@ passport.use(
         {
           clientID: GOOGLE_CLIENT_ID,
           clientSecret: GOOGLE_CLIENT_SECRET,
-          callbackURL: `${API_URL}/user/auth/google/callback`,
+          callbackURL: `https://enpatados-production.up.railway.app/user/auth/google/callback`,
         },
         async (_accessToken, _refreshToken, profile, done) => {
         try {
