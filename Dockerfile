@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Instalamos las dependencias del proyecto en un solo paso
 # Esto asegurará que las dependencias, incluido bcrypt, se compilen para Alpine
-RUN npm install
+RUN npm install --production
 
 # Copiamos el resto del código fuente
 COPY . .
