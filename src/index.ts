@@ -57,5 +57,5 @@ app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerSetup))
 setupAssociations()
 
 app.listen(HTTP_PORT, () => {
-  console.log(`server running on ${API_URL}:${HTTP_PORT}`)
+  console.log(`server running on ${API_URL}`)
 })
