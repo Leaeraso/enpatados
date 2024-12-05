@@ -15,6 +15,13 @@ const registerUser = async (req: Request, res: Response) => {
 
     const token = await userService.createUser(user)
 
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+      signed: true
+    })
+
     res.status(201).json({
       message: 'Usuario registrado con exito',
       token
