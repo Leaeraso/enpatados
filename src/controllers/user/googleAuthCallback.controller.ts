@@ -7,9 +7,9 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const {SECRET_KEY} = process.env
+const {SECRET_KEY, CORS} = process.env
 
-if(!SECRET_KEY){
+if(!SECRET_KEY || !CORS){
     throw new Error('SECRET_KEY no está definida en las variables de entorno')
 }
 
@@ -26,8 +26,5 @@ export const googleAuthCallback = (req: Request, res: Response) => {
         { expiresIn: process.env.EXPIRE_TOKEN }
     )
 
-    res.status(200).json({
-        message: 'Login con Google exitoso',
-        token,
-    });
+    res.redirect(`${CORS[0]}/auth/google?token=${token}`)
 }
