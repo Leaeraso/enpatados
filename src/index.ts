@@ -15,7 +15,7 @@ dotenv.config()
 
 connection()
 
-const { HTTP_PORT } = process.env
+const { HTTP_PORT, API_URL } = process.env
 const { SECRET_KEY } = process.env
 
 if(!SECRET_KEY){throw new Error('SECRET_KEY no esta declarado en las variables de entorno')}
@@ -57,5 +57,5 @@ app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerSetup))
 setupAssociations()
 
 app.listen(HTTP_PORT, () => {
-  console.log(`server running on http://localhost:${HTTP_PORT}`)
+  console.log(`server running on ${API_URL}:${HTTP_PORT}`)
 })
