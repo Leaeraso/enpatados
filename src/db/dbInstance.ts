@@ -10,7 +10,6 @@ const sequelize = new Sequelize(MYSQL_DB!, MYSQL_USER!, MYSQL_PASS!, {
   host: MYSQL_HOST!,
   dialect: 'mysql',
   port: Number(MYSQL_PORT),
-  logging: false,
   dialectOptions: {
     ssl: {
       rejectUnauthorized: false,
