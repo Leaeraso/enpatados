@@ -10,9 +10,13 @@ COPY package*.json ./
 # Instalamos las dependencias del proyecto en un solo paso
 # Esto asegurará que las dependencias, incluido bcrypt, se compilen para Alpine
 RUN npm install --production
+RUN npm install --only=dev
 
 # Copiamos el resto del código fuente
 COPY . .
+
+# Instalamos TypeScript globalmente si no está presente
+RUN npm install typescript --save-dev
 
 # Compilamos el proyecto TypeScript a JavaScript
 RUN npx tsc
