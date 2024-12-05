@@ -26,7 +26,7 @@ User.init(
       autoIncrement: true
     },
     googleId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true,
       unique: true
     },
@@ -48,7 +48,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 8,
         max: 30
@@ -64,10 +64,11 @@ User.init(
     },
     dob: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
       validate: {
         isDate: true
-      }
+      },
+      defaultValue: '2000-01-01'
     },
     role: {
       type: DataTypes.ENUM('admin', 'customer', 'god'),

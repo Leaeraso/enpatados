@@ -18,7 +18,7 @@ passport.use(
         {
           clientID: GOOGLE_CLIENT_ID,
           clientSecret: GOOGLE_CLIENT_SECRET,
-          callbackURL: `${API_URL}/auth/google/callback`,
+          callbackURL: `${API_URL}/user/auth/google/callback`,
         },
         async (_accessToken, _refreshToken, profile, done) => {
         try {
@@ -29,20 +29,24 @@ passport.use(
         if (existingUser) {
             return done(null, existingUser)
         }
+
+        console.log('Perfil de Google:', profile)
     
+
         const newUser = await userModel.create({
             googleId: profile.id,
-            email: profile.emails?.[0].value ?? 'noEmial@provide',
+            email: profile.emails?.[0].value ?? 'noEmial@provide.com',
             name: profile.name?.givenName ?? 'noName',
             surname: profile.name?.familyName ?? 'noSurname',
         });
-    
-            return done(null, newUser)
+
+        return done(null, newUser)
+            
         } catch (error) {
+            console.error('Error al crear el usuario', error)
             return done(error, undefined)
         }
-    }
-    )
+    })
 )
     
 passport.serializeUser((user: any, done) => {
