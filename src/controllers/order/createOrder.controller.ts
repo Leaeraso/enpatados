@@ -13,7 +13,7 @@ const createOrder = async (req: Request, res: Response) => {
       products.products
     );
 
-    res.redirect(url);
+    res.status(200).json(url);
   } catch (error) {
     if (error instanceof customError) {
       res.status(error.httpStatus).json({ error: error.message });
