@@ -26,5 +26,5 @@ export const googleAuthCallback = (req: Request, res: Response) => {
     { expiresIn: process.env.EXPIRE_TOKEN }
   );
 
-  res.redirect(`${CORS}/auth/google?token=${token}`);
+  res.redirect(`${CORS.split(' ')[0]}/auth/google?token=${token}`);
 };
