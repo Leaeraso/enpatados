@@ -8,7 +8,10 @@ const createOrder = async (req: Request, res: Response) => {
 
     const { products } = req.body;
 
-    const url = await orderService.createOrder(Number(userId), products);
+    const url = await orderService.createOrder(
+      Number(userId),
+      products.products
+    );
 
     res.redirect(url);
   } catch (error) {
