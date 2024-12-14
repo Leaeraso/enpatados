@@ -11,6 +11,8 @@ const { PHONE_NUMBER } = process.env;
 
 const createOrder = async (id: number, products: orderProductDTO[]) => {
   try {
+    console.log('Products:', products);
+
     if (products.length === 0) {
       throw errorHelper.badRequestError(
         'No hay productos en el carrito',
