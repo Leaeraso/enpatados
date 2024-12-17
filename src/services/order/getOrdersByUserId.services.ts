@@ -20,6 +20,7 @@ const getOrdersByUserId = async (
       where: {
         userId: id,
       },
+      order: [['createdAt', 'DESC']],
       include: [
         {
           model: productModel,
@@ -54,6 +55,8 @@ const getOrdersByUserId = async (
     if (error instanceof customError) {
       throw error;
     }
+
+    console.error(error);
 
     throw errorHelper.internalServerError(
       'Error al obtener las ordenes de compra',
